@@ -5,10 +5,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/jquery/slick/slick.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/jquery/slick/slick-theme-perso.css') }}"/>
+        {# <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> #}
+        {% endblock %}
     </head>
     <body>
+        
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+        <script src="{{ asset('assets/jquery/jquery_3_4_1.js') }}"></script>
+        <script src="{{ asset('assets/jquery/slick/slick.min.js') }}"></script>
+        <script src="{{ asset('assets/js/animation.js') }}"></script>
+        
+        {% endblock %}
     </body>
 </html>
