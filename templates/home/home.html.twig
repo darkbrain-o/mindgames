@@ -1,11 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Mindgames{% endblock %}
 
 
 
 {% block body %}
-{% include "includes/carousel.html.twig" %}
+<div class="testbg clearfix">
+<div class="bgGradienRight">
+    <div class="example-wrapper ">
+        
+        <nav>
+            <a href="{{ path('home_admin') }}">Home Admin</a>
+        </nav>
+        <hr>
+        <h1>Binevenue sur MINDGAMES ! </h1>
+    
+        <p>MINDGAMES est un site de vente de jeux vidéos.</p>
+    
+        <h2>Nos games</h2>
 
+    </div>
+    
+{% include "includes/carousel.html.twig" %}
+{% include "includes/list_home_games.html.twig" %}
+{% include "includes/footer.html.twig" %}
+</div>
+</div>
 
 {% endblock %}

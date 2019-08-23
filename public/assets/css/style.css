@@ -1,105 +1,162 @@
-/*   _______________________  Base Debut carousel     */
-.container1{
-    /* text-align: center; */
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    border: 1px blue solid;
-    
-}
-.galerie1{
-    
-    width: 50%;
-    display: inline-flex;
-    margin: 0 auto;
-    padding: 0;
-    
-    
-    
-    border: 1px red solid;
-    
-}
+/* 
+@keyframes monanimation {
+    0% {scale: 1;}
+    50% {scale: 1.2;}
+    100% {scale:1.4;}
+    }
+.zoomCard:hover{ animation-name : nomanimation;}
 
-.galerie1 li{
-    list-style: none;
-    width: 100%;
-    
-    margin: 0 auto;
-    border: 1px yellow solid;
-    
+.ma-transition{ 
+    width : 150px;
+    transition-property : width; 
+    transition-duration : 2s;
+    transition-timing-function : ease-out;
+    transition-delay : 2ms;
+} */
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
 }
 
-.sizepict1{
-    /* height: 5rem; */
-    /* min-height: 5rem; */
-    width: 100%;
-    /* width: 15rem; */
-    /* max-width: 15rem; */
-    border: 2px greenyellow solid;
+.clearfix {
+    display: block;
 }
-.pict1{
-    
-    
+html[xmlns] .clearfix {
+    display: block;
+}
+* html .clearfix {
+    height: 1%;
 }
 
-
-
-.zoom1{
-    transform: scale(1.3);
-    margin-top: 4rem;
-    border: 1px green solid;
-
-}
-/*   _______________________   Fin carousel     */
-/*   _______________________  Test Debut carousel     */
-.container{
-    /* text-align: center; */
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    border: 1px blue solid;
-    
-}
-.galerie{
-    
-    width: 50%;
-    display: inline-flex;
-    margin: 0 auto;
-    padding: 0;
-    
-    
-    
-    border: 1px red solid;
-    
-}
-
-.galerie li{
-    list-style: none;
-    width: 100%;
-    
-    margin: 0 auto;
-    border: 1px yellow solid;
-    
-}
-
-.sizepict{
-    /* height: 5rem; */
-    /* min-height: 5rem; */
-    /* width: 100%; */
-    /* width: 15rem; */
-    /* max-width: 15rem; */
-    border: 2px greenyellow solid;
-}
-
-
-.zoom{
-    transform: scale(1.3);
-    margin-top: 4rem;
-    border: 1px green solid;
-
-}
-/*   _______________________   Fin carousel     */
 body{
-    background: silver;
+    height: 100vh;
 }
+.heightBg{
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.superContainerSocial{
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    
+    
+}
+.containerSocial{
+    height: 4rem;
+    padding-top: 20px;
+    
+    /* width: 6rem; */
+    
+}
+.logoSocial{
+    width: 2rem;
+    margin: 0.2rem;
+    
+    overflow: hidden;
+
+    transition: all .2s ease-in-out;
+}
+.logoSocial:hover{
+    width: 2.3rem;
+    margin: 0;
+    
+    /* width: 3%; */
+    transform: scale(1.3);
+    background: white;
+    box-shadow: 1px 1px 15px 5px #fdfdfd; 
+    border-radius: 0.8rem 0.8rem 0.8rem 0.8rem;
+}
+/*   ____________________________    Start list card home  _________________  */
+
+.pictDetail{
+    width: 100%;
+    z-index: 10;
+    /* border-radius: 1rem 1rem 0rem 0rem; */
+    transition: all .2s ease-in-out;
+    
+}
+.pictDetail:hover{
+    /* background: ; */
+    /* margin-top: 4rem; */
+    /* transform: scale(1.3);
+    z-index: 5;
+    box-shadow: 1px 1px 15px 5px #656565; 
+    border-radius: 1rem 1rem 1rem 1rem; */
+    
+}
+.picCard{
+    /* height: 100vh; */
+    width: 100%;
+    border-radius: 1rem 1rem 1rem 1rem;
+    /* transition: all .2s ease-in-out; */
+    
+}
+.detailCard { 
+    padding: 0;
+    
+    border: 1px black solid;
+    
+    /* transition: all .2s ease-in-out;  */
+    
+    background: silver;
+    /* overflow: hidden; */
+}
+.zoomCard { 
+    padding: 0;
+    border: 1px black solid;
+    
+    transition: all .2s ease-in-out; 
+    
+    background: silver;
+    overflow: hidden;
+}
+.zoomCard:nth-child(n+1){
+    border-radius: 1rem 0rem 0rem 0rem;
+    transition: border-radius .2s ease-in-out; 
+}
+.zoomCard:nth-child(n+2){
+    border-radius: 0rem 0rem 0rem 0rem;
+    transition: border-radius .2s ease-in-out; 
+}
+.zoomCard:nth-child(n+3){
+    border-radius: 0rem 1rem 0rem 0rem;
+    transition: border-radius .2s ease-in-out; 
+}
+.zoomCard:nth-child(n+4){
+    border-radius: 0rem 0rem 0rem 1rem;
+    transition: border-radius .2s ease-in-out; 
+}
+.zoomCard:nth-child(n+5){
+    border-radius: 0rem 0rem 0rem 0rem;
+    transition: border-radius .2s ease-in-out; 
+}
+.zoomCard:nth-child(n+6){
+    border-radius: 0rem 0rem 1rem 0rem;
+    transition: border-radius .2s ease-in-out; 
+}
+
+
+    
+.zoomCard:hover { 
+    transform: scale(1.05);
+    z-index: 5;
+    box-shadow: 1px 1px 15px 5px #656565; 
+    border-radius: 1rem 1rem 1rem 1rem;
+}
+.testbg{
+    background-color: yellowgreen;
+    border: 1px red solid;
+    color: blue;
+}
+/*   ____________________________    End list card home  _________________  */
+
+
+
 
