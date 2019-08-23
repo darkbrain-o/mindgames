@@ -12,34 +12,31 @@ class StrongString extends Constraint
     public $min;
     public $max;
     public $allowSpecialChars;
+    public $message_size = 'La valeur "{{ value }}" ne contient pas le bon nombre de caractères.';
+    public $message_character = 'La valeur "{{ value }}" n\' pas le bon format.';
 
-    // public function __construct($options)
-    // {
-    //     if (!isset($options["min"])) {
-    //         $this->min = -999;
-    //     } else {
-    //         $this->min = $options["min"];
-    //     }
-    //     if (!isset($options["max"])) {
-    //         $this->max = -999;
-    //     } else {
-    //         $this->max = $options["max"];
-    //     }
-    //     if (!isset($options["allowSpecialChars"])) {
-    //         $this->allowSpecialChars = false;
-    //     } else {
-    //         $this->allowSpecialChars = $options["allowSpecialChars"];
-    //     }
-    // }
 
-    public function getItem()
+    public function __construct($options)
     {
-        // return \get_class($this) . 'Validator';
-        return $this;
+        if(!empty($options['min'])){
+            $this->min = $options['min'];
+        }
+        else{
+            $this->min = -999;
+        }
+
+        if(!empty($options['max'])){
+            $this->max = $options['max'];
+        }
+        else{
+            $this->max = -999;
+        }
+
+        if(!empty($options['allowSpecialChars'])){
+            $this->allowSpecialChars = $options['allowSpecialChars'];
+        }
+        else{
+            $this->allowSpecialChars = false;
+        }
     }
-    /*
-     * Any public properties become valid options for the annotation.
-     * Then, use these in your validator class.
-     */
-    public $message = 'The value "{{ value }}" is not valid.';
 }

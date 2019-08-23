@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Validator\StrongString;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -30,8 +31,7 @@ class ProfilFormType extends AbstractType
             ])
             ->add('submit', SubmitType::class,[
                 'label' => "Modifier mon profil"
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

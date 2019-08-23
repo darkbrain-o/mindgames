@@ -34,29 +34,35 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=30)
-     * @Assert\NotBlank()
+     * @StrongString(min = 4, max = 30, allowSpecialChars = true)
      */
-    private $pseudo;//3,30  (["min"=>2,"max"=>30])
+    private $pseudo;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Image(
+     *     minWidth = 640,
+     *     maxWidth = 1920,
+     *     minHeight = 360,
+     *     maxHeight = 1080
+     * )
      */
-    private $picture;//4,255
+    private $picture;
 
     /**
      * @Assert\Email(
      *     message = "The email '{{ value }}' is not a valid email.",
      *     checkMX = true)
      * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank()
+     * @StrongString(min = 5, max = 100, allowSpecialChars = true)
      */
     private $mail;//7,100,true
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
+     * @StrongPassword(min = 5, max = 30)
      */
-    private $password;//6,30,true
+    private $password;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Command", inversedBy="user")

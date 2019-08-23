@@ -9,9 +9,25 @@ use Symfony\Component\Validator\Constraint;
  */
 class StrongPassword extends Constraint
 {
-    /*
-     * Any public properties become valid options for the annotation.
-     * Then, use these in your validator class.
-     */
-    public $message = 'The value "{{ value }}" is not valid.';
+    public $min;
+    public $max;
+    public $message_size = 'La valeur "{{ value }}" n\'a pas la bonne taille.';
+    public $message_specialChar = 'La valeur "{{ value }}" n\'a pas le bon format.';
+
+    public function __construct($options)
+    {
+        if(!empty($options['min'])){
+            $this->min = $options['min'];
+        }
+        else{
+            $this->min = -999;
+        }
+
+        if(!empty($options['max'])){
+            $this->max = $options['max'];
+        }
+        else{
+            $this->max = -999;
+        }
+    }
 }
