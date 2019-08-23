@@ -5,21 +5,25 @@ namespace App\Validator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
+
 class StrongStringValidator extends ConstraintValidator
 {
-    private $min;
-    private $max;
-    private $allowSpecialChars;
+    // private $entityManager;
 
-    public function __construct(int $min = -999, int $max = -999, bool $allowSpecialChars = false)
-    {
-        $this->min = $min;
-        $this->max = $max;
-        $this->allowSpecialChars = $allowSpecialChars;
-    }
-
+    // public function __construct($options)
+    // {
+    //     $this->entityManager = $options;
+    // }
+    public $min;
+    public $max;
+    public $allowSpecialChars;
+    
     public function validate($value, Constraint $constraint)
     {
+        $this->allowSpecialChars = $constraint->getItem()->allowSpecialChars;
+        $this->min = $constraint->getItem()->min;
+        $this->max = $constraint->getItem()->max;
+
          //----------------   VERIF SI NULL   ----------------
         /* @var $constraint \App\Validator\StrongString */
 
