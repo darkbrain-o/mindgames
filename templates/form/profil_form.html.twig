@@ -1,0 +1,7 @@
+{# extends 'base.html.twig' #}
+
+{{ form_start(profil_form)}}
+    {{ form_widget(profil_form.pseudo, {attr : { class: 'maclass'} }) }}
+    {{ form_widget(profil_form.picture, {attr : { value: user.pseudo }}) }}
+    {{ form_widget(profil_form.mail)}}
+{{ form_end(profil_form)}}

@@ -39,7 +39,6 @@ class StrongPasswordValidator extends ConstraintValidator
             $this->confirmStop($value, $constraint->message_specialChar);
         }
     }
-    
 
     //Si il rentre dans les conditions, l'input est invalide
     private function confirmStop($value, string $message)
