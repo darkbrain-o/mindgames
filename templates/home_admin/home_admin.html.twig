@@ -1,0 +1,32 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+
+<!-- retirer le CSS une fois tout le projet push sur Git Hub -->
+<div class="container" style="background-color:rgb(43, 226, 202); width:100%; text-align:center">
+    <h1 >Bienvenue Administrateur</h1>
+
+    <!-- Introduire notre NavBar perso ici et supprimer la table -->
+    <table border="2" style="margin:0 auto">
+        <thead>
+            <tr>
+                <th>
+                    <a href="{{ path('home_admin') }}">Admin</a>
+                </th>
+                <th>
+                    API
+                </th>
+                <th>
+                    <a href="{{ path('games') }}">admin-Jeux</a>
+                </th>
+                <th>
+                    <a href="{{ path('commands') }}">Commandes</a>
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+{% endblock %}
+

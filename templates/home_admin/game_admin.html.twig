@@ -1,0 +1,12 @@
+{% extends "base_admin.html.twig" %}
+
+{% block title %}Game_admin{% endblock %}
+
+{% block body %}
+{% for game in games %}
+<div><p>{{game.name}}</p><a href="{{ path('edit_game', { id: game.id }) }}">Modifier jeux</a></div>
+    
+{% endfor %}
+
+
+{% endblock %}
