@@ -4,14 +4,47 @@
 
 
 
+
 {% block body %}
 <div class="testbg clearfix">
 <div class="bgGradienRight">
-    <div class="example-wrapper ">
+    
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}            
+    
+            <a href="{{ path('myProfil') }}">Mon profile | </a>
+
+            <a href="{# {{ path('') }} #}">Ajouter un game | </a>
+          
+            <a href="{# {{ path('') }} #}">Mes games | </a>
+        {% else %}
+               
+            <a href="{{ path('signup') }}">signup | </a>
         
-        <nav>
-            <a href="{{ path('home_admin') }}">Home Admin</a>
-        </nav>
+        {% endif %}
+        
+        {% if is_granted('ROLE_ADMIN') %}
+            
+            <a href="{{ path('home_admin') }}" >Home Admin</a>
+            <a href="{{ path('myProfil') }}">Mon profile | </a>
+            <a href="{{ path('home') }}" >Home</a>
+                    
+        {% else %}
+            
+            <a href="{{ path('app_login') }}">app_login | </a>
+            
+
+        {% endif %}
+
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+            <a href="{{ path('app_logout') }}">Logout | </a>
+            
+        {% endif %}
+            
+            
+            
+            
+        
         <hr>
         <h1>Binevenue sur MINDGAMES ! </h1>
     
@@ -24,7 +57,5 @@
 {% include "inclu/carousel.html.twig" %}
 {% include "inclu/list_home_games.html.twig" %}
 {% include "inclu/footer.html.twig" %}
-</div>
-</div>
 
 {% endblock %}

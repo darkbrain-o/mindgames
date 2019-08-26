@@ -10,11 +10,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/{page<\d*>}", name="home")
+     * @Route("/", name="home")
      */
     public function index(GameRepository $gameRepository,        PaginatorInterface $paginatorInterface,
     $page = 0)
     {
+
         
 
         $gamesQuery = $gameRepository->createQueryBuilder('p')
