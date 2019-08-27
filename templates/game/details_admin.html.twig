@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail du produits {{ game.name}}{% endblock %}
+
+{% block body %}
+{# Récupérer la Nav Admin#}
+{#{% include "nav.html.twig" %}#}
+
+<div class="container-fluid p-0 h-100 mx-auto heightBg " style="background-image: url('{{ asset(game.picture) }}');">
+    <div class="{{classGradien}} heightBg pt-2">
+
+        <div class="detailPict col-8 mx-auto">
+
+            <p class="card-text">
+                <h1>{{ game.name }}</h1>
+            </p>
+            <p class="card-text">Id du Jeu : {{ game.id }}</p>
+            <p class="card-text">Retro : {{ game.RetroShape }}</p>
+            <p class="card-text">Commande du jeu : {{ game.command }}</p>
+            <p class="card-text">Stock : {{ game.stock }}</p>
+            <p class="card-text">Statut : {{ game.status }}</p>
+            <p class="card-text">Prix : {{ game.price }}</p>
+            <p class="card-text">Plateforme : {{ game.platform }}</p>
+            <p class="card-text">Pegi : {{ game.pegi }}</p>
+            <p class="card-text">Date d'ajout : {{ game.CreationDate|date('d/m/Y') }}</p>
+        </div>
+
+        <div>
+            <img src="{{ asset(game.picture) }}" alt="Card image" class="img-responsive">
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                <p>Description :</p><br>{{ game.description }}
+            </p>
+        </div>
+    </div>
+</div>
+<li class="nav-item">
+    <a href="{{ path('liste_jeux') }}" class="nav-link btn btn-danger">Retour à la liste</a>
+</li>
+
+</div>
+</div>
+</div>
+{% endblock %}

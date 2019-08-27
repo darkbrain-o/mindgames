@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="../public/assets/bootstrap-4.0.0/css/bootstrap.css"> -->
+    <style>
+        .fhb{
+            /* Background Fade to right - Inscription/Détails */
+            background: linear-gradient(0.35turn, rgba(255, 255, 255, 0) 5%,rgba(255, 255, 255, 0.8) 7%, rgb(255, 255, 255) 10%, rgb(255, 255, 255) 90%, rgba(255, 255, 255, 0.8) 93%,rgba(255, 0, 255, 0) 95%), url("{{ asset('fontest.jpg') }}");
+            height: 1080px;
+        }
+
+        @media (min-width: 992px){
+            .fhb{
+                background: linear-gradient(0.35turn, rgba(255, 255, 255, 0) 12%,rgba(255, 255, 255, 0.8) 16%, rgb(255, 255, 255) 20%, rgb(255, 255, 255) 80%, rgba(255, 255, 255, 0.8) 84%,rgba(255, 0, 255, 0) 88%), url("fondtest.jpg");
+        
+                }
+        }
+        @media (min-width: 1200px){
+            .fhb{
+                background: linear-gradient(0.35turn, rgba(255, 255, 255, 0) 23%,rgba(255, 255, 255, 0.8) 25%, rgb(255, 255, 255) 30%, rgb(255, 255, 255) 70%, rgba(255, 255, 255, 0.8) 75%,rgba(255, 0, 255, 0) 77%), url("fondtest.jpg");
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="fhb">
+        {{ form(signup_form) }}
+    </div>
+    
+
+    <!-- <script src="../public/assets/jquery/jquery_3_4_1.js"></script>
+    <script src="../public/assets/bootstrap-4.0.0/js/bootstrap.js"></script>
+    <script src="../public/assets/bootstrap-4.0.0/js/bootstrap.bundle.js"></script>-->
+
+</body>
+</html>

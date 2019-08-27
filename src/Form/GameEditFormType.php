@@ -13,11 +13,13 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
+
 class GameEditFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+
 
             ->add('name', TextType::class, [
                 'label' => 'Nom'
@@ -31,7 +33,6 @@ class GameEditFormType extends AbstractType
             ->add('description', TextareaType::class,[
                 'label' => 'Description'
             ])
-
             
             ->add('stock', TextType::class, [
                 'label' => 'Stock'
@@ -58,6 +59,7 @@ class GameEditFormType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Envoyer'
             ])
+
         ;
     }
 

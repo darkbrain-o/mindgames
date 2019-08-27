@@ -24,7 +24,7 @@ class Command
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="commands")
      */
-    public $user;
+    private $user;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Game", mappedBy="command")

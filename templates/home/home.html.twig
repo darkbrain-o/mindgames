@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mindgames{% endblock %}
+
+
+
+
+{% block body %}
+<div class="testbg clearfix">
+<div class="bgGradienRight">
+    
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}            
+    
+            <a href="{{ path('myProfil') }}">Mon profile | </a>
+
+            <a href=" {{ path('add_game') }} ">Ajouter un game | </a>
+        {% else %}
+               
+            <a href="{{ path('signup') }}">signup | </a>
+        
+        {% endif %}
+        
+        {% if is_granted('ROLE_ADMIN') %}
+            
+            <a href="{{ path('home_admin') }}" >Home Admin |</a>
+                    
+        {% else %}
+            
+            <a href="{{ path('app_login') }}">app_login | </a>
+            
+
+        {% endif %}
+
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+            <a href="{{ path('app_logout') }}">Logout | </a>
+            
+        {% endif %}
+            
+            
+            
+            
+        
+        <hr>
+        <h1>Binevenue sur MINDGAMES ! </h1>
+    
+        <p>MINDGAMES est un site de vente de jeux vidéos.</p>
+    
+        <h2>Nos games</h2>
+
+    </div>
+    
+{% include "inclu/carousel.html.twig" %}
+{% include "inclu/list_home_games.html.twig" %}
+{% include "inclu/footer.html.twig" %}
+
+{% endblock %}

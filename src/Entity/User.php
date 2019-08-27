@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Validator\StrongPassword;
+
 use App\Validator\StrongString;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Validator\StrongPassword;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -34,29 +34,44 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=30)
-     * @Assert\NotBlank()
+     * @StrongString(min = 4, max = 30, allowSpecialChars = true)
      */
-    private $pseudo;//3,30  (["min"=>2,"max"=>30])
+    private $pseudo;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Image(
+     *     minWidth = 640,
+     *     maxWidth = 1920,
+     *     minHeight = 360,
+     *     maxHeight = 1080
+     * )
      */
-    private $picture;//4,255
+    private $picture;
+
+        /**
+     * @Assert\Image()
+     * @var File
+     */
+    private $pictureFile;
+
 
     /**
      * @Assert\Email(
      *     message = "The email '{{ value }}' is not a valid email.",
      *     checkMX = true)
      * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank()
+     * @StrongString(min = 5, max = 100, allowSpecialChars = true)
      */
     private $mail;//7,100,true
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
+     * @StrongPassword(min = 5, max = 30)
      */
-    private $password;//6,30,true
+    private $password;
+
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Command", inversedBy="user")
@@ -116,6 +131,31 @@ class User implements UserInterface
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+
+     * Get the value of pictureFile
+     *
+     * @return  File
+     */ 
+    public function getPictureFile()
+    {
+        return $this->pictureFile;
+    }
+
+    /**
+     * Set the value of pictureFile
+     *
+     * @param  File  $pictureFile
+     *
+     * @return  self
+     */ 
+    public function setPictureFile(File $pictureFile)
+    {
+        $this->pictureFile = $pictureFile;
 
         return $this;
     }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Game;
+
 use App\Form\GameEditFormType;
 use App\Repository\GameRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,17 +12,18 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
 class GameController extends AbstractController
 {
     /**
-     * @Route("/liste_jeux", name="games")
+     * @Route("/liste_jeux", name="liste_jeux")
      */
     public function index(GameRepository $gameRepository)
     {
         
         $games = $gameRepository->findAll();
 
-        return $this->render('game/list_games.html.twig', [
+        return $this->render('game/list_admin_games.html.twig', [
             'game' => $games,
         ]);
     }
@@ -37,13 +39,44 @@ class GameController extends AbstractController
     /**
      * @Route("/game/{id<\d+>}", name="details_game")
      */
-    public function details(Game $game, GameRepository $gameRepository)
+    public function detailGame(GameRepository $gameRepository, Game $game)
     {
         $id = $game->getId();
+        $creationDate = $game->getCreationDate();
         $gameById = $gameRepository->find($id);
 
+        $directionLinearG = 2; 
+        // Sens linear gradien template for class | 0 = null |  1= turn | 2 = to right
+        // injecter 'directionLinearG' => $directionLinearG,
+
         return $this->render('game/details.html.twig', [
-            'game' => $gameById
+            'game' => $gameById,
+            'creation_date' => $creationDate,
+            'directionLinearG' => $directionLinearG,
+            'classGradien' => 'bgGradienRight',
+            'okpascool' => 'ok c\'est pas cool',
+        ]);
+    }
+
+     /**
+     * @Route("/game_admin/{id<\d+>}", name="details_game_admin")
+     */
+    public function detailGameAdmin(GameRepository $gameRepository, Game $game)
+    {
+        $id = $game->getId();
+        $creationDate = $game->getCreationDate();
+        $gameById = $gameRepository->find($id);
+
+        $directionLinearG = 2; 
+        // Sens linear gradien template for class | 0 = null |  1= turn | 2 = to right
+        // injecter 'directionLinearG' => $directionLinearG,
+
+        return $this->render('game/details_admin.html.twig', [
+            'game' => $gameById,
+            'creation_date' => $creationDate,
+            'directionLinearG' => $directionLinearG,
+            'classGradien' => 'bgGradienRight',
+            'okpascool' => 'ok c\'est pas cool',
         ]);
     }
 
@@ -104,7 +137,7 @@ class GameController extends AbstractController
             $objectManager->flush();
 
             //On va redirigé l'utilisateur vers le formulaire de connexion
-            return $this->redirectToRoute('games');
+            return $this->redirectToRoute('liste_jeux');
         }
 
         return $this->render('game/edit.html.twig', [
@@ -126,7 +159,6 @@ class GameController extends AbstractController
         // on supprime le produit
         $objectManager->remove($game);
         $objectManager->flush();
-        return $this->redirectToRoute('games');
+        return $this->redirectToRoute('liste_jeux');
     }
-
 }

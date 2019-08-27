@@ -1,41 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Détail du produits {{ game.name}}{% endblock %}
-
-{% block body %}
-    {# Récupérer la Nav Admin#}
-    {#{% include "nav.html.twig" %}#}
-    <div class="mt-5">
-        <li class="nav-item btn btn-danger">
-        </li>
-    </div>
+{% block title %}Game détails{% endblock %}
 
 
-    <div class="card container row bg-primary">
-        <div class="offset-3 col-6">
-            <div class="card-body ">
 
-                <p class="card-text"><h1>{{ game.name }}</h1></p>
-                <p class="card-text">Id du Jeu : {{ game.id }}</p>
-                <p class="card-text">Retro : {{ game.RetroShape }}</p>
-                <p class="card-text">Commande du jeu : {{ game.command }}</p>
-                <p class="card-text">Stock : {{ game.stock }}</p>
-                <p class="card-text">Statut : {{ game.status }}</p>
-                <p class="card-text">Prix : {{ game.price }}</p>
-                <p class="card-text">Plateforme : {{ game.platform }}</p>
-                <p class="card-text">Pegi : {{ game.pegi }}</p>
-                <p class="card-text">Date d'ajout : {{ game.CreationDate|date('d/m/Y') }}</p>
-            </div>
-            
-            <div>
-                <img src="{{ asset(game.picture) }}" alt="Card image" class="img-responsive">
-            </div>
-            <div class="card-body">
-                <p class="card-text"><p>Description :</p><br>{{ game.description }}</p>
-            </div>
+{% block body %}        
+<div class="container-fluid p-0 h-100 mx-auto heightBg "
+style="background-image: url('{{ asset(game.picture) }}');">
+<div class="{{classGradien}} heightBg pt-2">
+
+    <div class="detailPict col-8 mx-auto"> 
+        
+        
+        <img src="{{ asset(game.picture) }}" class="pictDetail" alt="Photo - {{ game.name }}">
+        <div class="p-2">
+          <h5 class="text-center">{{ game.name }}</h5>
+          <p class="">Description : <br>{{ game.description }}</p>
+          <p class="">Plateforme : {{ game.platform }} - Pegi : {{ game.pegi }}</p>
+          <p class=""></p>
+          <p class="card-text">Date d'ajout : {{ creation_date|date('d/m/Y') }} - Stock disponible : {{ game.stock }} </p>
+          {# <p class="card-text">Date d'ajout : {{ game.creation_date|date('d/m/Y') }}</p> #}
+{# <a class=" btn btn-success text-white " href="{{ path('#', {'id' : game.id })}}">Acheter {{ game.name }}</a> #}
+          <p class=""></p>
+          <p class="">Prix : {{ game.price }} €</p>
+          <p>
+          <a class=" btn btn-success text-white " href="">Acheter {{ game.name }}</a><a href="{{ path('home') }}" class="btn btn-sm btn-danger ">Retour</a>
+          </p>
+        
+        </div> 
+      </div>
+    
+
         </div>
-    </div>
-    <li class="nav-item">
-            <a href="{{ path('games') }}" class="nav-link btn btn-danger">Retour à la liste</a>
-    </li>
+      </div>
+    
+{% include "inclu/footer.html.twig" %}
+
 {% endblock %}

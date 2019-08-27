@@ -1,0 +1,28 @@
+
+<body>
+    {# extends 'base.html.twig' #}
+<h1>Modifier votre profile</h1>
+{{ form_start(profil_form)}}
+    {{ form_widget(profil_form.pseudo, {attr : { class: 'maclass'} }) }}
+    {#{{ form_widget(profil_form.pictureFile, {attr : { value: user.picture }}) }}#}
+    {{ form_widget(profil_form.mail)}}
+    <hr>
+
+        
+        <hr>
+
+        <hr>
+        {# {{ form_row(profil_form.oldpassword)}} #}
+        <hr>
+        {# {{ form_label(profil_form.password.first,'Votre nouveau mot de passe :', {attr : { class: ''}}) }}
+        {{ form_widget(profil_form.password.first, {attr : { class: 'form-control'}}) }}
+        {{ form_label(profil_form.password.second,'Confirmer votre nouveau mot de passe :', {attr : { class: ''}}) }}
+        {{ form_widget(profil_form.password.second, {attr : { class: 'form-control'}}) }}
+        {{ form_errors(profil_form.password) }} #}
+
+    
+
+{{ form_end(profil_form)}}
+<a href="{{ path('home') }}" >Home </a>
+<a href="{{ path('home') }}" >Il faut ajouter un boutton pour confirmer un changement de mot de passe</a>
+</body>

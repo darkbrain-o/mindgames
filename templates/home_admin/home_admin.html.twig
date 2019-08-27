@@ -19,14 +19,22 @@
                     API
                 </th>
                 <th>
-                    <a href="{{ path('games') }}">admin-Jeux</a>
+                    <a href="{{ path('liste_jeux') }}">Liste des jeux</a>
                 </th>
                 <th>
                     <a href="{{ path('commands') }}">Commandes</a>
+                </th>
+                <th>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                        <a href="{{ path('app_logout') }}">Logout</a>
+            
+                    {% endif %}
                 </th>
             </tr>
         </thead>
     </table>
 </div>
-{% endblock %}
 
+
+{% endblock %}

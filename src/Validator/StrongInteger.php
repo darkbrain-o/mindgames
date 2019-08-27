@@ -9,9 +9,33 @@ use Symfony\Component\Validator\Constraint;
  */
 class StrongInteger extends Constraint
 {
-    /*
-     * Any public properties become valid options for the annotation.
-     * Then, use these in your validator class.
-     */
-    public $message = 'The value "{{ value }}" is not valid.';
+    private $min;
+    private $max;
+    private $acceptFloat;
+    public $message_format = 'Le format de la "{{ value }}" est incorrecte.';
+    public $message_size = 'La valeur "{{ value }}" n\'a pas la bonne taille.';
+
+    public function __construct($options)
+    {
+        if(!empty($options['min'])){
+            $this->min = $options['min'];
+        }
+        else{
+            $this->min = -999;
+        }
+
+        if(!empty($options['max'])){
+            $this->max = $options['max'];
+        }
+        else{
+            $this->max = -999;
+        }
+
+        if(!empty($options['acceptFloat'])){
+            $this->acceptFloat = $options['acceptFloat'];
+        }
+        else{
+            $this->acceptFloat = true;
+        }
+    }
 }
