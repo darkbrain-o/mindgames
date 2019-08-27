@@ -20,19 +20,25 @@ class UserController extends AbstractController
      * @Route("/monProfil", name="myProfil")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
-    public function showProfil(Request $request, ObjectManager $objectManager, User $user = null)
+    public function showProfil(Request $request, ObjectManager $objectManager)
     {
-        if($user === null){
-            $user = new User();
-       }
-    //    elseif($user->getOwner() !==  $this->getUser()){
-    //        throw $this->createAccessDeniedException();
-    //    }
+        // if($user === null){
+        $user = new User();
+        //    }
+        //    elseif($user->getOwner() !==  $this->getUser()){
+        //        throw $this->createAccessDeniedException();
+        //    }
         $user = $this->getUser();
         $form = $this->createForm(ProfilFormType::class, $user);
         $form->handleRequest($request);
-        
-        if ($form->isSubmitted() && $form->isValid()) {
+
+        if ($form->isSubmitted()) {
+            echo 'subm';
+            if ($form->isValid()) {
+
+                echo 'valid';
+            }
+
             // if($user->getPicture() !== null){
             //     //On gère le déplacement du fichier uploadé depuis la localisation temporaire
             //     //vers la localisation permanente (public/uploads)
@@ -44,10 +50,10 @@ class UserController extends AbstractController
             //     $imageFile->move($folder, $filename);
             //     $user->setPicture($folder . DIRECTORY_SEPARATOR . $filename);
             // }
-            $objectManager->persist($user);
-            $objectManager->flush();
+            // $objectManager->persist($user);
+            // $objectManager->flush();
         }
-        
+
         return $this->render('form/profil_form.html.twig', [
             'profil_form' => $form->createView(),
             'user' => $user,
@@ -63,7 +69,7 @@ class UserController extends AbstractController
 
         $signUpForm->handleRequest($request);
 
-        if($signUpForm->isSubmitted() && $signUpForm->isValid()){
+        if ($signUpForm->isSubmitted() && $signUpForm->isValid()) {
             //Récupérer et hasher le mot de passe, puis le set
             $encodedPassword = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($encodedPassword);

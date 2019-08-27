@@ -21,10 +21,10 @@ class ProfilFormType extends AbstractType
                 'label' => 'Pseudo',
                 'required' => false
             ])
-            ->add('picture',TextType::class,[
-                'label' => 'Image de profil',
-                'required' => false
-            ])
+            // ->add('picture',TextType::class,[
+            //     'label' => 'Image de profil',
+            //     'required' => false
+            // ])
             ->add('mail',EmailType::class,[
                 'label' => 'Votre Email',
                 'required' => false

@@ -51,7 +51,7 @@ class User implements UserInterface
 
     /**
      * @Assert\Email(
-     *     message = "The email '{{ value }}' is not a valid email.",
+     *     message = "Votre Email n'est pas valide.",
      *     checkMX = true)
      * @ORM\Column(type="string", length=100)
      * @StrongString(min = 5, max = 100, allowSpecialChars = true)
