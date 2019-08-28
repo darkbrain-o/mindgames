@@ -1,15 +1,16 @@
-
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}Liste des jeux{% endblock %}
 
 {% block body %}
-
-    <h1>Liste des jeux</h1>
+ <h1>Liste des jeux</h1>
 
     <div class="container" style="width:80%; margin: 0 auto">
 
-        <a href="{{ path('add_game') }}">Ajouter un jeu</a>
-        <a href="{{ path('home_admin')}}">Retour au backOffice</a>
+        <a class="btn btn-dark" href="{{ path('add_game') }}">Ajouter un jeu</a>
+        <br>
+        <br>
+        <a class="btn btn-dark" href="{{ path('home_admin')}}">Retour au backOffice</a>
 
         <table border="1">
             <thead>
@@ -49,43 +50,34 @@
                         <td>{{ game.status }}</td>
                         <td>{{ game.CreationDate|date('d/m/Y') }}</td>
                         <td>
-                            <a class="btn btn-danger" href="{{ path('details_game_admin', {'id' : game.id }) }}">
+                            <a class="btn btn-info" href="{{ path('details_game_admin', {'id' : game.id }) }}">
                                 Détails
                             </a>
                         </td>
                         <td>
-                            <a class="btn btn-danger" href="{{ path('edit_game', {'id' : game.id }) }}">
-                                Modifier</i>
-                            </a>
+                            <a class="btn btn-primary" href="{{ path('edit_game', {'id' : game.id }) }}">
+                                Modifier</a>
                         </td>
                         <td>
                             <a type="submit" value="Delete post" class="btn btn-lg btn-block btn-danger" href="{{ path('delete_game', {'id' : game.id }) }}" onclick="confirm('Valider la suppression ?') || event.preventDefault()">
-                                Supprimer</i>
-                            </a>
+                                Supprimer</a>
                         </td>
-
-
                     </tr>
-                </tbody>
-            {% endfor %}
+
+                {% endfor %}
+            </tbody>
+
         </table>
-
-        <div class="col-1 bg-success">
-
+        {# <div class="col-1 bg-success">
             {% if is_granted('ROLE_ADMIN') %}
                 <a class="btn btn-danger" href="{{ path('edit_game', {'id' : game.id }) }}">Modifier</a>
             {% endif %}
         </div>
-
         <div class="col-1">
-
             {% if is_granted('ROLE_ADMIN') %}
                 <a class="btn btn-danger" href="{{ path('delete_game', {'id' : game.id }) }}">Supprimer</a>
             {% endif %}
-        </div>
+        </div> #}
         <hr>
     </div>
-    {% endblock %}
-
-
-​
+{% endblock %}

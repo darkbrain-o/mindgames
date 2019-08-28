@@ -60,6 +60,7 @@ class GameController extends AbstractController
 
      /**
      * @Route("/game_admin/{id<\d+>}", name="details_game_admin")
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
     public function detailGameAdmin(GameRepository $gameRepository, Game $game)
     {

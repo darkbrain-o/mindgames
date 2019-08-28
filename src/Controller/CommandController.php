@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Command;
 use App\Form\CommandEditFormType;
+use App\Repository\UserRepository;
 use App\Repository\CommandRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -51,19 +52,17 @@ class CommandController extends AbstractController
      */
     public function editCommand(Request $request,
      ObjectManager $objectManager,
-     Command $command = null
+     Command $command = null,
+     UserRepository $userRepository
      )
     {
+
         $titleName = 'Modifier';
 
         if($command === null) {
             $titleName = 'Ajouter';
             $command = new Command();
         } 
-        // elseif($command->getOwner() !== $this->getUser()) {
-        //     throw $this->createAccessDeniedException();
-        // }
-
 
         $commandForm = $this->createForm(CommandEditFormType::class, $command);
 
@@ -72,35 +71,15 @@ class CommandController extends AbstractController
         if($commandForm->isSubmitted() && $commandForm->isValid()) {
 
 
-            $command->setCreationDate(new \DateTime());
-            if($command->getImageFile() !== null) {
+            $user = $userRepository->findOneBy(["pseudo"=>$command->getUserCommand()]);
 
-                // on gère ici le déplacement du fichier uploadé depuis la localisation temporaire
-                // vers la localisation permanente (public/uploads)
-
-                /** @var UploadedFile $imageFile */
-
-                $imageFile = $command->getImageFile();
-
-                $folder = 'uploads';
-                 $filename = uniqid();
-
-                $imageFile->move($folder, $filename);
-
-                $command->setImage($folder . DIRECTORY_SEPARATOR . $filename);
-
-
-            }
-
-            $command->setOwner($this->getUser());
-            //On ajoute l'utilisateur a la base
+            $command->setUser($user);
 
             $objectManager->persist($command);
-
             $objectManager->flush();
 
             //On va redirigé l'utilisateur vers le formulaire de connexion
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('commands');
         }
 
         return $this->render('command/edit.html.twig', [

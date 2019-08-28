@@ -1,3 +1,5 @@
+{% extends "base_admin.html.twig" %}
+
 {% block title %}{{ title_name }} Jeux{% endblock %}
 
 {% block body %}
@@ -7,7 +9,7 @@
 {{ form(game_form)}}
 
 
-<a href="{{ path('home') }}" class="nav-link btn btn-danger">Retour à la liste</a>
+<a href="{{ path('liste_jeux') }}" class="nav-link btn btn-danger">Retour à la liste</a>
 
 
 {% endblock %}

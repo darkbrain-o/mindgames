@@ -19,7 +19,7 @@ class CommandEditFormType extends AbstractType
         $builder
 
 
-            ->add('user', TextType::class,[
+            ->add('user_command', TextType::class,[
                 'label' => 'Pseudo'
             ])
             

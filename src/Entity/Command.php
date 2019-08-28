@@ -26,6 +26,8 @@ class Command
      */
     private $user;
 
+    private $user_command;
+    
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Game", mappedBy="command")
      */
@@ -121,4 +123,24 @@ class Command
 
 
 
+
+    /**
+     * Get the value of user_command
+     */ 
+    public function getUserCommand()
+    {
+        return $this->user_command;
+    }
+
+    /**
+     * Set the value of user_command
+     *
+     * @return  self
+     */ 
+    public function setUserCommand($user_command)
+    {
+        $this->user_command = $user_command;
+
+        return $this;
+    }
 }
