@@ -9,6 +9,7 @@ use App\Repository\CommandRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
@@ -16,6 +17,7 @@ class CommandController extends AbstractController
 {
     /**
      * @Route("/command", name="commands")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function index(CommandRepository $commandRepository)
     {
@@ -30,6 +32,7 @@ class CommandController extends AbstractController
 
     /**
      * @Route("/command/{id<\d+>}", name="details_command")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function details(Command $command, CommandRepository $commandRepository)
     {
@@ -49,6 +52,7 @@ class CommandController extends AbstractController
     /**
      * @Route("/command/add", name="add_command")
      * @Route("/command/edit/{id<\d+>}", name="edit_command")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function editCommand(Request $request,
      ObjectManager $objectManager,
@@ -92,6 +96,7 @@ class CommandController extends AbstractController
 
     /**
      * @Route("/command/delete/{id<\d+>}", name="delete_command")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function deleteCommand(Command $command, ObjectManager $objectManager)
     {

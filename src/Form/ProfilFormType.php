@@ -26,10 +26,10 @@ class ProfilFormType extends AbstractType
                 'label' => 'Pseudo',
                 'required' => false
             ])
-            // ->add('pictureFile',FileType::class,[
-            //     'label' => 'Image de profil',
-            //     'required' => false
-            // ]) 
+            ->add('pictureFile',FileType::class,[
+                'label' => 'Image de profil',
+                'required' => false
+            ]) 
             // ->add('pictureFile', textType::class, [
             //     'required' => false
             // ])

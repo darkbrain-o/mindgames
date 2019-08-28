@@ -29,6 +29,9 @@
             
                     {% endif %}
                 </th>
+                <th>
+                    <a href="{{ path('list_user') }}">Utilisateur</a>
+                </th>
             </tr>
         </thead>
     </table>
@@ -50,7 +53,7 @@
           <a class="nav-link disabled" href="{{ path('commands') }}">Commandes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#">Utilisateur</a>
+          <a class="nav-link disabled" href="{{ path('list_user')}}">Utilisateur</a>
         </li>
         <li class="nav-item">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}

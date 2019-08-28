@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -18,7 +19,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @UniqueEntity("pseudo")
  * @UniqueEntity("mail")
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -40,17 +41,16 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $picture;
+
+        /**
      * @Assert\Image(
      *     minWidth = 640,
      *     maxWidth = 1920,
      *     minHeight = 360,
      *     maxHeight = 1080
      * )
-     */
-    private $picture;
-
-        /**
-     * @Assert\Image()
      * @var File
      */
     private $pictureFile;
@@ -58,7 +58,7 @@ class User implements UserInterface
 
     /**
      * @Assert\Email(
-     *     message = "The email '{{ value }}' is not a valid email.",
+     *     message = "Votre Email n'est pas valide.",
      *     checkMX = true)
      * @ORM\Column(type="string", length=100)
      * @StrongString(min = 5, max = 100, allowSpecialChars = true)
@@ -299,5 +299,25 @@ class User implements UserInterface
         $this->email = $email;
 
         return $this;
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->pseudo,
+            $this->role,
+            $this->password,
+        ));
+    }
+
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->pseudo,
+            $this->role,
+            $this->password,
+        ) = unserialize($serialized);
     }
 }

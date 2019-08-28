@@ -2,10 +2,19 @@
 
 namespace App\Entity;
 
+use App\Validator\StrongString;
+use App\Validator\StrongInteger;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\GameRepository")
+ * @UniqueEntity("name")
  */
 class Game
 {
@@ -28,26 +37,31 @@ class Game
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\NotBlank()
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=120)
+     * @StrongString(min = 3, max = 120, allowSpecialChars = false)
      */
     private $name;
 
     /**
      * @ORM\Column(type="integer")
+     * @StrongInteger(min = 1, max = 100)
      */
     private $stock;
 
     /**
      * @ORM\Column(type="smallint")
+     * @StrongInteger(min = 0, max = 1)
      */
     private $status;
 
     /**
      * @ORM\Column(type="float")
+     * @StrongInteger(min = 1, max = 1000, acceptFloat = true)
      */
     private $price;
 
@@ -58,11 +72,13 @@ class Game
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @StrongString(min = 2, max = 50, allowSpecialChars = true)
      */
     private $platform;
 
     /**
      * @ORM\Column(type="integer")
+     * @StrongInteger(min = 0, max = 21)
      */
     private $pegi;
 
@@ -70,6 +86,14 @@ class Game
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $picture;
+
+    /**
+     * @Assert\Image()
+     * @var File
+     */
+    private $pictureFile;
+
+
 
     public function getId(): ?int
     {
@@ -204,6 +228,31 @@ class Game
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+
+     * Get the value of pictureFile
+     *
+     * @return  File
+     */ 
+    public function getPictureFile()
+    {
+        return $this->pictureFile;
+    }
+
+    /**
+     * Set the value of pictureFile
+     *
+     * @param  File  $pictureFile
+     *
+     * @return  self
+     */ 
+    public function setPictureFile(File $pictureFile)
+    {
+        $this->pictureFile = $pictureFile;
 
         return $this;
     }

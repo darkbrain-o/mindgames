@@ -28,7 +28,7 @@ class StrongStringValidator extends ConstraintValidator
         }
         //Vérifier avec caractères spéciaux
         else{
-            if (!\preg_match('~^[a-zA-Z!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?]*$~', $value)) {
+            if (!\preg_match('~^[a-zA-Z!@#$%^&*()_+\d\-=\[\]{} ;\':"\\|,.<>\/?]*$~', $value)) {
                 $this->confirmStop($value,$constraint->message_character);
             }
         }

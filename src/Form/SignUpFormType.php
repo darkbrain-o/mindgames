@@ -23,7 +23,7 @@ class SignUpFormType extends AbstractType
             ->add('pseudo',TextType::class,[
                 'label' => 'Choisissez un pseudo'
             ])
-            ->add('picture', FileType::class,[
+            ->add('pictureFile', FileType::class,[
                 'label' => 'Image de profil',
                 'required' => 'false'
             ])

@@ -10,30 +10,24 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 
-class GameEditFormType extends AbstractType
+class GameEditAdminType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
-
             ->add('name', TextType::class, [
                 'label' => 'Nom'
             ])
-
             ->add('retro_shape', IntegerType::class,[
                 'label' => 'Retro ?',
                 'required' => false
             ])
-
             ->add('description', TextareaType::class,[
                 'label' => 'Description'
             ])
-            
             ->add('stock', TextType::class, [
                 'label' => 'Stock'
             ])
@@ -43,19 +37,15 @@ class GameEditFormType extends AbstractType
             ->add('price', TextType::class, [
                 'label' => 'Prix '
             ])
-            ->add('creation_date', DateTimeType::class, [
-                'label' => 'Date'
-            ])
             ->add('platform', TextType::class, [
                 'label' => 'Plateforme'
             ])
             ->add('pegi', TextType::class, [
                 'label' => 'Pegi'
             ])
-            ->add('picture', TextType::class, [
+            ->add('pictureFile', FileType::class, [
                 'label' => 'Photo'
             ])
-
             ->add('submit', SubmitType::class, [
                 'label' => 'Envoyer'
             ])

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\GameRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
@@ -32,6 +33,7 @@ class HomeController extends AbstractController
 
     /**
      * @Route("/admin", name="home_admin")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function indexAdmin()
     {

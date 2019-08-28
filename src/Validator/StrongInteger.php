@@ -9,9 +9,9 @@ use Symfony\Component\Validator\Constraint;
  */
 class StrongInteger extends Constraint
 {
-    private $min;
-    private $max;
-    private $acceptFloat;
+    public $min;
+    public $max;
+    public $acceptFloat;
     public $message_format = 'Le format de la "{{ value }}" est incorrecte.';
     public $message_size = 'La valeur "{{ value }}" n\'a pas la bonne taille.';
 
