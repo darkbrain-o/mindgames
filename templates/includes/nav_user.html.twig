@@ -1,0 +1,50 @@
+{% block nav %}
+
+    <nav class="p_bg-light navbar navbar-expand-md navbar-dark p_bg-1 ">
+        <div class="p_toggler-right col-1"></div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMindGames"
+                aria-controls="navbarMindGames" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="p_hidden-altern collapse navbar-collapse justify-content-md-around" id="navbarMindGames">
+            <ul class="navbar-nav text-right">
+                <li class="p_nav-link-container nav-item">
+                    <a class="p_nav-link nav-link" href="{{path('home')}}">Acceuil</a>
+                </li>
+                {#<li class="p_nav-link-container nav-item">
+                    <a class="p_nav-link nav-link" href="{{ path('game') }}">Jeux</a>
+                </li>#}
+
+                {% if is_granted('ROLE_ADMIN') %}
+                <li class="p_nav-link-container nav-item">
+                    <a class="p_nav-link nav-link" href="{{ path('home_admin') }}">Acceuil Admin</a>
+                </li>
+                {% else %}
+                    <a class="p_nav-link nav-link" href="#"></a>
+                {% endif %}
+
+                <li class="p_nav-icone nav-item">
+                    <a class="nav-link" href="#"><img src="img/dragon_545-600.png" alt="" img></a>
+                </li>
+                <li class="p_nav-link-container nav-item">
+                    <a class="p_nav-link nav-link" href="#"></a>
+                </li>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="p_nav-link-container nav-item">
+                        <a class="p_nav-link nav-link" href="#"></a>
+                    </li>
+                {% else %}
+                <li class="p_nav-link-container nav-item">
+                    <a class="p_nav-link nav-link" href="registration_user.html.twig">S'inscrire</a>
+                </li>
+                {% endif %}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li class="p_nav-link-container nav-item">
+                    <a class="p_nav-link nav-link" href="#">Deconnexion</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+{% endblock %}

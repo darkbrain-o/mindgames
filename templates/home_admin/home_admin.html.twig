@@ -1,20 +1,21 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}Hello HomeAdminController!{% endblock %}
+{% block title %}Acceuil administrateur{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    {% include "includes/nav_admin.html.twig" %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/mindgames/src/Controller/HomeAdminController.php'|file_link(0) }}">src/Controller/HomeAdminController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/mindgames/templates/home_admin/index.html.twig'|file_link(0) }}">templates/home_admin/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <h1>ACCUEIL ADMINISTRATEUR</h1>
+
+    {#<div class="card container row bg-primary">
+        <div class="offset-3 col-6">
+            <div class="card-body ">
+                <img src="{{ asset(user.picture) }}" alt="Card image" class="img-responsive" width="100" height="100">
+                <p class="card-text">Pseudo : {{ user.pseudo }}</p>
+                <p class="card-text">Email : {{ user.mail }}</p>
+            </div>
+        </div>
+    </div>#}
+
 {% endblock %}

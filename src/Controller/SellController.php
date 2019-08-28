@@ -12,7 +12,7 @@ class SellController extends AbstractController
      */
     public function index()
     {
-        return $this->render('sell/index.html.twig', [
+        return $this->render('sell/registration_user.html.twig.twig', [
             'controller_name' => 'SellController',
         ]);
     }

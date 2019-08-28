@@ -1,0 +1,27 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %} Détail de commande {% endblock %}
+
+{% block body %}
+
+    {% include "includes/nav_admin.html.twig" %}
+
+    <div class="mt-5">
+        <li class="nav-item btn btn-danger">
+            <a href="{{ path('home_admin') }}" class="nav-link btn btn-danger">Retour</a>
+        </li>
+    </div>
+    <div class="card container row bg-primary">
+        <div class="offset-3 col-6">
+            <div class="card-body ">
+                <p class="card-text">Id Commande : {{ command.id }}</p>
+                <p class="card-text">Id User : {{ command.user.id }}</p>
+                <p class="card-text">Date de commande : {{ command.CommandDate|date('d/m/Y') }}</p>
+                <p class="card-text">Statut : {{ command.status }}</p>
+            </div>
+        </div>
+    </div>
+    <li class="nav-item">
+        <a href="/" class="nav-link">Retour</a>
+    </li>
+{% endblock %}

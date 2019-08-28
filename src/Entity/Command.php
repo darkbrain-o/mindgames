@@ -24,7 +24,7 @@ class Command
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="commands")
      */
-    private $user;
+    private $user_id;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Game", mappedBy="command")
@@ -53,12 +53,12 @@ class Command
 
     public function getUser(): ?User
     {
-        return $this->user;
+        return $this->user_id;
     }
 
     public function setUser(?User $user): self
     {
-        $this->user = $user;
+        $this->user = $user_id;
 
         return $this;
     }
@@ -117,8 +117,6 @@ class Command
 
         return $this;
     }
-
-
 
 
 }
