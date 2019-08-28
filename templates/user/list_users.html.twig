@@ -1,0 +1,61 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Liste des Utilisateurs{% endblock %}
+
+{% block body %}
+ <h1>Liste des Utilisateurs</h1>
+
+    <div class="container" style="width:80%; margin: 0 auto">
+
+        <a class="btn btn-dark" href="{{ path('add_user') }}">Ajouter un utilisateur</a>
+        <br>
+        <br>
+        <a class="btn btn-dark" href="{{ path('home_admin')}}">Retour au backOffice</a>
+
+        <table border="1">
+            <thead>
+
+                <tr>
+                    <th>Image</th>
+                    <th>ID</th>
+                    <th>ID Bank</th>
+                    <th>ID des Commandes</th>
+                    <th>Pseudo</th>
+                    <th>Mail</th>
+                    <th>Roles</th>
+                    <th colspan="3">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for user in user %}
+                    <tr>
+
+                        <td>{{ user.id }}</td>
+                        <td><img src="{{ asset(user.picture) }}" alt="" class="img-responsive" width="200" height="200"></td>
+                        <td>{{ user.id }}</td>
+                        <td><a href="{{ user.pseudo }}">...</a></td>
+                        <td>{{ user.mail }}</td>
+                        <td>{{ user.role }}</td>
+                        <td>
+                            <a class="btn btn-info" href="{{ path('details_user', {'id' : user.id }) }}">
+                                Détails
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" href="{{ path('edit_user', {'id' : user.id }) }}">
+                                Modifier</a>
+                        </td>
+                        <td>
+                            <a type="submit" value="Delete post" class="btn btn-lg btn-block btn-danger" href="{{ path('delete_user', {'id' : user.id }) }}" onclick="confirm('Valider la suppression ?') || event.preventDefault()">
+                                Supprimer</a>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+            </tbody>
+
+        </table>
+        <hr>
+    </div>
+{% endblock %}

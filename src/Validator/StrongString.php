@@ -12,6 +12,7 @@ class StrongString extends Constraint
     public $min;
     public $max;
     public $allowSpecialChars;
+    // public $allowNumbers;
     public $message_size = 'La valeur "{{ value }}" ne contient pas le bon nombre de caractères.';
     public $message_character = 'La valeur "{{ value }}" n\' pas le bon format.';
 
@@ -38,5 +39,12 @@ class StrongString extends Constraint
         else{
             $this->allowSpecialChars = false;
         }
+
+        // if(!empty($options['allowNumbers'])){
+        //     $this->allowNumbers = $options['allowNumbers'];
+        // }
+        // else{
+        //     $this->allowNumbers = false;
+        // }
     }
 }

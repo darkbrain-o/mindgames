@@ -1,20 +1,43 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}Hello HomeAdminController!{% endblock %}
+{% block title %}Administration{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<!-- retirer le CSS une fois tout le projet push sur Git Hub -->
+<div class="container" style="background-color:rgb(43, 226, 202); width:100%; text-align:center">
+    <h1 >Bienvenue Administrateur</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/mindgames/src/Controller/HomeAdminController.php'|file_link(0) }}">src/Controller/HomeAdminController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/mindgames/templates/home_admin/index.html.twig'|file_link(0) }}">templates/home_admin/index.html.twig</a></code></li>
-    </ul>
+    <!-- Introduire notre NavBar perso ici et supprimer la table -->
+    <table border="2" style="margin:0 auto">
+        <thead>
+            <tr>
+                <th>
+                    <a href="{{ path('home_admin') }}">Admin</a>
+                </th>
+                <th>
+                    API
+                </th>
+                <th>
+                    <a href="{{ path('liste_jeux') }}">Liste des jeux</a>
+                </th>
+                <th>
+                    <a href="{{ path('commands') }}">Commandes</a>
+                </th>
+                <th>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                        <a href="{{ path('app_logout') }}">Logout</a>
+            
+                    {% endif %}
+                </th>
+                <th>
+                    <a href="{{ path('list_user') }}">Utilisateur</a>
+                </th>
+            </tr>
+        </thead>
+    </table>
 </div>
+
+
 {% endblock %}

@@ -1,18 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Mindgames{% endblock %}
+
+
+
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="testbg clearfix">
+<div class="bgGradienRight">
+    
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}            
+    
+            <a href="{{ path('myProfil') }}">Mon profile | </a>
 
-<div class="example-wrapper">
+            <a href=" {{ path('add_game') }} ">Ajouter un game | </a>
+        {% else %}
+               
+            <a href="{{ path('signup') }}">signup | </a>
+        
+        {% endif %}
+        
+        {% if(is_granted('ROLE_ADMIN')) %}
+            
+            <a href="{{ path('home_admin') }}" >Home Admin |</a>
+                    
+        {% else %}
+            
+            <a href="{{ path('app_login') }}">app_login | </a>
+            
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ path('signup') }}">src/Controller/HomeController.php</a></code></li>
-    </ul>
-</div>
+        {% endif %}
+
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+            <a href="{{ path('app_logout') }}">Logout | </a>
+            
+        {% endif %}
+            
+            
+            
+            
+        
+        <hr>
+        <h1>Binevenue sur MINDGAMES ! </h1>
+    
+        <p>MINDGAMES est un site de vente de jeux vidéos.</p>
+    
+        <h2>Nos games</h2>
+
+    </div>
+    
+{% include "inclu/carousel.html.twig" %}
+{% include "inclu/list_home_games.html.twig" %}
+{% include "inclu/footer.html.twig" %}
+
 {% endblock %}

@@ -2,15 +2,16 @@
 
 namespace App\Entity;
 
-use App\Validator\StrongPassword;
+
 use App\Validator\StrongString;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Validator\StrongPassword;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints as Assert;
-
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -18,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity("pseudo")
  * @UniqueEntity("mail")
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -40,14 +41,20 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $picture;
+
+        /**
      * @Assert\Image(
      *     minWidth = 640,
      *     maxWidth = 1920,
      *     minHeight = 360,
      *     maxHeight = 1080
      * )
+     * @var File
      */
-    private $picture;
+    private $pictureFile;
+
 
     /**
      * @Assert\Email(
@@ -60,9 +67,11 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      * @StrongPassword(min = 5, max = 30)
      */
     private $password;
+
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Command", inversedBy="user")
@@ -122,6 +131,31 @@ class User implements UserInterface
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+
+     * Get the value of pictureFile
+     *
+     * @return  File
+     */ 
+    public function getPictureFile()
+    {
+        return $this->pictureFile;
+    }
+
+    /**
+     * Set the value of pictureFile
+     *
+     * @param  File  $pictureFile
+     *
+     * @return  self
+     */ 
+    public function setPictureFile(File $pictureFile)
+    {
+        $this->pictureFile = $pictureFile;
 
         return $this;
     }
@@ -265,5 +299,25 @@ class User implements UserInterface
         $this->email = $email;
 
         return $this;
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->pseudo,
+            $this->role,
+            $this->password,
+        ));
+    }
+
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->pseudo,
+            $this->role,
+            $this->password,
+        ) = unserialize($serialized);
     }
 }

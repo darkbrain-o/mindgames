@@ -1,0 +1,11 @@
+{% block title %}{{ title_name }} un Jeu{% endblock %}
+
+{% block body %}
+
+<h1>{{ title_name }} un Jeu</h1>
+{{form(game_form)}}
+
+
+<a href="{{ path('home') }}" class="nav-link btn btn-danger">Retour à la liste</a>
+
+{% endblock %}

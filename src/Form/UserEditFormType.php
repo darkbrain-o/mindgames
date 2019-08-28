@@ -16,7 +16,8 @@ class UserEditFormType extends AbstractType
             ->add('picture')
             ->add('mail')
             ->add('password')
-            ->add('fk_bank')
+            ->add('role')
+            ->add('bank')
             ->add('command')
         ;
     }

@@ -5,9 +5,9 @@ namespace App\Validator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
-
 class StrongStringValidator extends ConstraintValidator
 {
+
     public function validate($value, Constraint $constraint)
     {
          //----------------   VERIF SI NULL   ----------------
@@ -19,6 +19,7 @@ class StrongStringValidator extends ConstraintValidator
 
         //------------   VERIF SI c'est une string   ------------
         //Vérifier sans caractères spéciaux
+
         if(!$constraint->allowSpecialChars){
             //N'accepte que les lettres et majuscules
             if (!\preg_match('~^[a-zA-Z]+$~', $value)) {
@@ -27,7 +28,7 @@ class StrongStringValidator extends ConstraintValidator
         }
         //Vérifier avec caractères spéciaux
         else{
-            if (!\preg_match('~^[a-zA-Z!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?]*$~', $value)) {
+            if (!\preg_match('~^[a-zA-Z!@#$%^&*()_+\d\-=\[\]{} ;\':"\\|,.<>\/?]*$~', $value)) {
                 $this->confirmStop($value,$constraint->message_character);
             }
         }

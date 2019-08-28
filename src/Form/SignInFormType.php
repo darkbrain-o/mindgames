@@ -15,6 +15,7 @@ class SignInFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+
             ->add('pseudo',TextType::class,[
                 'label' => 'Pseudo'
             ])
@@ -24,6 +25,7 @@ class SignInFormType extends AbstractType
             ->add('submit', SubmitType::class,[
                 'label' => "Se connecter"
             ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
