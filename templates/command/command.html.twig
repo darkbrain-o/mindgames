@@ -5,11 +5,14 @@
 
 {% block body %}
 
+<h1 class="text-center">Liste des commandes</h1>
+<br>
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <a href="{{ path('add_command') }}" class="nav-link btn btn-success">Ajouter une commande</a>
+                <a href="{{ path('add_command') }}" class="nav-link btn btn-success">Ajouter une commande</a><br>
             </div>
+            
         </div>
                 <table class="table" border="2" id="center">
                     <thead>
@@ -18,8 +21,7 @@
                             <th>ID User</th>
                             <th>Date Commande</th>
                             <th>Statut</th>
-                            <th>Role</th>
-                            <th colspan="3">Actions</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,18 +31,15 @@
                                 <td>{{ command.user.id }}</td>
                                 <td>{{ command.CommandDate|date('d/m/Y') }}</td>
                                 <td>{{ command.status }}</td>
-                                <td>Initialiser Rôle</td>
                                 <td>
                                     <a class="btn btn-info" href="{{ path('details_command', {'id' : command.id }) }}">
                                         <i class="fa fa-info"></i>
                                     </a>
-                                </td>
-                                <td>
+                                
                                     <a class="btn btn-info" href="{{ path('edit_command', {'id' : command.id }) }}">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                </td>
-                                <td>
+                                
                                     <a class="btn btn-danger" href="{{ path('delete_command', {'id' : command.id }) }}" , onclick="confirm('Valider la suppression ?') || event.preventDefault()">
                                         <i class="fa fa-trash"></i>
                                     </a>
