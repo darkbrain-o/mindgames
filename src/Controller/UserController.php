@@ -9,6 +9,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
@@ -20,10 +21,11 @@ class UserController extends AbstractController
      * @Route("/monProfil", name="myProfil")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
-    public function showProfil(Request $request, ObjectManager $objectManager, UserPasswordEncoderInterface $encoder, User $user = null)
+    public function showProfil(Request $request, ObjectManager $objectManager, UserPasswordEncoderInterface $encoder,SessionInterface $session , User $user = null)
     {
-        if($user === null){
-            $user = new User();
+        if($user === null and $session === null){
+            $user = new User();  // create user
+            
        }
     //    elseif($user->getOwner() !==  $this->getUser()){
     //        throw $this->createAccessDeniedException();
@@ -61,7 +63,7 @@ class UserController extends AbstractController
     /**
      * @Route("/inscription", name="signup")
      */
-    public function signUp(Request $request, ObjectManager $objectManager, UserPasswordEncoderInterface $encoder, User $newImage = null)
+    public function signUp(Request $request, ObjectManager $objectManager, UserPasswordEncoderInterface $encoder)
     {
         $user = new User();
         $signUpForm = $this->createForm(SignUpFormType::class, $user);
@@ -73,11 +75,11 @@ class UserController extends AbstractController
             $encodedPassword = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($encodedPassword);
 
-            if ($newImage->getImageFile() !== null) {
+            if ($user->getImageFile() !== null) {
                 // On va gérer ici le déplacement du fichier uploadé la localisation temporaire
                 // Vers la localisation permanente (public/uploads)
                 /** @var UploadedFile $imageFile  */
-                $imageFile = $newImage->getImageFile();
+                $imageFile = $user->getImageFile();
     
                 $folder = 'uploads'; 
                 
@@ -86,7 +88,7 @@ class UserController extends AbstractController
     
                 $imageFile->move($folder, $filename);
     
-                $newImage->setImage($folder . DIRECTORY_SEPARATOR . $filename);
+                $user->setImage($folder . DIRECTORY_SEPARATOR . $filename);
                 
                 }
 

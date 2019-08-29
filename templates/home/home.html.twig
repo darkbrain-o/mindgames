@@ -6,8 +6,8 @@
 
 
 {% block body %}
-<div class="testbg clearfix">
-<div class="bgGradienRight">
+<div class="clearfix homeColor ">
+<div class="bgGradienRight ">
     
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}            
     
@@ -30,14 +30,14 @@
                     
         {% else %}
             
-            <a href="{{ path('app_login') }}">app_login | </a>
+            <a href="{{ path('app_login') }}">sign in | </a>
             
 
         {% endif %}
 
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
-            <a href="{{ path('app_logout') }}">Logout | </a>
+            <a href="{{ path('mon_panier') }}">Voir mon panier | </a>
             
         {% endif %}
             
@@ -52,10 +52,10 @@
     
         <h2>Nos games</h2>
 
+        
+        {% include "inclu/carousel.html.twig" %}
+        {% include "inclu/list_home_games.html.twig" %}
+        {% include "inclu/footer.html.twig" %}
+        
     </div>
-    
-{% include "inclu/carousel.html.twig" %}
-{% include "inclu/list_home_games.html.twig" %}
-{% include "inclu/footer.html.twig" %}
-
 {% endblock %}

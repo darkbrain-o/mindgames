@@ -1,38 +1,4 @@
 {% block body %}
-{# <div class="container col-6 m-4 mx-auto">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        game
-                <div class="carousel-inner">
-                    {% set reverseProduct = products| reverse %}
-                    {% set lastProduct = reverseProduct| slice(0, 3) %} #}
-                    
-                    {# {% set productlast = maxProduct -3 %} #}
-
-                    {# {% for game in lastGames %} #}
-                    {# {% for product in las_products %} via homeController #}
-    
-    
-{#                   <div class="carousel-item   {% if loop.first %}active{% endif %}">
-                        <img src="{{ asset(game.image) }}" class="card-img-top" alt="Photo - {{ game.name }}">
-                  </div>
-
-                  {% endfor %}
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" style="width: 30rem;" data-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </div>
-</div> #}
-
 <div class="superContainer border border-info">
     <div class="container">
         <div class="navigation mx-auto">
@@ -51,17 +17,16 @@
         <div class="row col-10 border border-danger mx-auto">
     {% for game in games %}
     
-    {# <div class="col-3 border border-success "></div> #}
-    <div class=" col-4 zoomCard pt-1">
+    <div class="zoomCard col-sm-12 col-md-6 col-lg-4  pt-1">
         <img src="{{ asset(game.picture) }}" class=" picCard" alt="Photo - {{ game.name }}">
         <div class="p-2">
           <h5 class="">{{ game.name }}</h5>
           <p class="">{{ game.description }}</p>
-          <a class=" btn btn-success text-white " href="{{ path('game', {'id' : game.id })}}">Détails du produit</a>
+          <p class="">prix : {{ game.price }} €</p>
+          <a class=" btn btn-success text-white mb-0" href="{{ path('game', {'id' : game.id })}}">Détails du produit</a>
           
         </div>
       </div>
-    {# </div> #}
     
       {% endfor %}
     </div>
@@ -72,13 +37,4 @@
         </div>
     </div>
 </div>
-
-            
-    
-<script>//Script AJAX de rafraichissement de la fenêtre du minichat
-/* 	setInterval('load_messages()', 1000);
-		function load_messages() {
-		$('.fenetrechat').load('loadfenetre.php');
-	}  */
-</script>
 {% endblock %}

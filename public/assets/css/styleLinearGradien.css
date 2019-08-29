@@ -1,49 +1,45 @@
-
-
-bgToRight{
-    /* Background Fade to right - Inscription/Détails */
-    background: linear-gradient(0.35turn, rgba(255, 255, 255, 0) 5%,rgba(255, 255, 255, 0.8) 7%, rgb(255, 255, 255) 10%, rgb(255, 255, 255) 90%, rgba(255, 255, 255, 0.8) 93%,rgba(255, 0, 255, 0) 95%), url("{{ asset('assets/sonic2.jpg') }}");
-    /* height: 1080px; */
-
-
-}
-
 bgTurn{
     /* Background Fade to right - Inscription/Détails */
     background: linear-gradient(0.35turn, rgba(255, 255, 255, 0) 5%,rgba(255, 255, 255, 0.8) 7%, rgb(255, 255, 255) 10%, rgb(255, 255, 255) 90%, rgba(255, 255, 255, 0.8) 93%,rgba(255, 0, 255, 0) 95%), url("{{ asset('assets/sonic2.jpg') }}");
-    /* height: 1080px; */
+    z-index: 10;
+}
+
+.bgGradienRight{
 
 
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 1%,rgba(255, 255, 255, 0.8) 15%, rgb(255, 255, 255) 30%, rgb(255, 255, 255) 70%, rgba(255, 255, 255, 0.8) 85%,rgba(255, 0, 255, 0) 99%);
+    z-index: 10;
+    width: 100%;
 }
 
 @media (min-width: 992px){
-    bgToRight{
-        background: linear-gradient(0.35turn, rgba(255, 255, 255, 0) 12%,rgba(255, 255, 255, 0.8) 16%, rgb(255, 255, 255) 20%, rgb(255, 255, 255) 80%, rgba(255, 255, 255, 0.8) 84%,rgba(255, 0, 255, 0) 88%), url("../sonic2.jpg");
-
-        }
     bgTurn{
         background: linear-gradient(0.35turn, rgba(255, 255, 255, 0) 12%,rgba(255, 255, 255, 0.8) 16%, rgb(255, 255, 255) 20%, rgb(255, 255, 255) 80%, rgba(255, 255, 255, 0.8) 84%,rgba(255, 0, 255, 0) 88%), url("../sonic2.jpg");
-
+        z-index: 10;
         }
+
+    .bgGradienRight{
+
+
+        background: linear-gradient(to right, rgba(255, 255, 255, 0) 1%,rgba(255, 255, 255, 0.8) 15%, rgb(255, 255, 255) 30%, rgb(255, 255, 255) 70%, rgba(255, 255, 255, 0.8) 85%,rgba(255, 0, 255, 0) 99%);
+        z-index: 10;
+        width: 100%;
+    }
+
 }
 @media (min-width: 1200px){
-    bgTurnLeft{
-        background: linear-gradient(0.35turn, rgba(255, 255, 255, 0) 23%,rgba(255, 255, 255, 0.8) 25%, rgb(255, 255, 255) 30%, rgb(255, 255, 255) 70%, rgba(255, 255, 255, 0.8) 75%,rgba(255, 0, 255, 0) 77%);
 
-        background-repeat: no-repeat;
-        background-size: contain;
-    }
     bgTurn{
         background: linear-gradient(0.35turn, rgba(255, 255, 255, 0) 23%,rgba(255, 255, 255, 0.8) 25%, rgb(255, 255, 255) 30%, rgb(255, 255, 255) 70%, rgba(255, 255, 255, 0.8) 75%,rgba(255, 0, 255, 0) 77%);
-
+        z-index: 10;
         background-repeat: no-repeat;
         background-size: contain;
     }
     .bgGradienRight{
 
-        /* background: linear-gradient(to right, rgba(255, 255, 255, 0) 6%,rgba(255, 255, 255, 0.8) 15%, rgb(255, 255, 255) 50%, rgb(255, 255, 255) 80%, rgba(255, 255, 255, 0.8) 25%,rgba(255, 0, 255, 0) 57%); */
+
         background: linear-gradient(to right, rgba(255, 255, 255, 0) 1%,rgba(255, 255, 255, 0.8) 15%, rgb(255, 255, 255) 30%, rgb(255, 255, 255) 70%, rgba(255, 255, 255, 0.8) 85%,rgba(255, 0, 255, 0) 99%);
-        /* background: linear-gradient(0.35turn, rgba(255, 255, 255, 0) 23%,rgba(255, 255, 255, 0.8) 25%, rgb(255, 255, 255) 30%, rgb(255, 255, 255) 70%, rgba(255, 255, 255, 0.8) 75%,rgba(255, 0, 255, 0) 77%), url("../sonic2.jpg"); */
+        z-index: 10;
         width: 100%;
 
         

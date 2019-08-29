@@ -10,10 +10,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/{page<\d+>}", name="home")
      */
     public function index(GameRepository $gameRepository,        PaginatorInterface $paginatorInterface,
-    $page = 0)
+    $page = 1)
     {
 
         
@@ -22,14 +22,18 @@ class HomeController extends AbstractController
             ->orderBy('p.creation_date', 'desc')
             ->getQuery();
 
-            $games = $paginatorInterface->paginate($gamesQuery, (int)$page = 1, 6);
+            $games = $paginatorInterface->paginate($gamesQuery, (int)$page, 6);
             $lastGames = $gameRepository->findBy([], ['creation_date' => 'DESC'], 6);
+
+
+        
 
 
 
         return $this->render('home/home.html.twig', [
             'games' => $games,
             'last_games' => $lastGames,
+            
             
         ]);
     }
