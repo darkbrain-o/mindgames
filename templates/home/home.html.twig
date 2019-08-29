@@ -2,45 +2,21 @@
 
 {% block title %}Mindgames{% endblock %}
 
-
-
+{% block stylesheets %}
+{{parent()}}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
+<style type="text/css">
+            #map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
+                height:400px;
+            }
+        </style>
+{% endblock %}
 
 {% block body %}
+
 <div class="testbg clearfix">
 <div class="bgGradienRight">
-    
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}            
-    
-            <a href="{{ path('myProfil') }}">Mon profile | </a>
-
-            <a href=" {{ path('add_game') }} ">Ajouter un game | </a>
-        {% else %}
-               
-            <a href="{{ path('signup') }}">signup | </a>
-        
-        {% endif %}
-        
-        {% if(is_granted('ROLE_ADMIN')) %}
-            
-            <a href="{{ path('home_admin') }}" >Home Admin |</a>
-                    
-        {% else %}
-            
-            <a href="{{ path('app_login') }}">app_login | </a>
-            
-
-        {% endif %}
-
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-
-            <a href="{{ path('app_logout') }}">Logout | </a>
-            
-        {% endif %}
-            
-            
-            
-            
-        
+         
         <hr>
         <h1>Binevenue sur MINDGAMES ! </h1>
     
@@ -49,9 +25,42 @@
         <h2>Nos games</h2>
 
     </div>
-    
+  
 {% include "inclu/carousel.html.twig" %}
 {% include "inclu/list_home_games.html.twig" %}
-{% include "inclu/footer.html.twig" %}
+
+<h2 class="text-center">Où sommes-nous ?</h2>
+<br>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+<script>
+        // On initialise la latitude et la longitude de Paris (centre de la carte)
+        var lat = 48.853069;
+        var lon = 2.359903;
+        var macarte = null;
+        // Fonction d'initialisation de la carte
+        function initMap() {
+            // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
+            macarte = L.map('map').setView([lat, lon], 11);
+            // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
+            L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+                // Il est toujours bien de laisser le lien vers la source des données
+                attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
+                minZoom: 1,
+                maxZoom: 20
+            }).addTo(macarte);
+
+            var marker = L.marker([lat, lon]).addTo(macarte);
+        }
+        window.onload = function(){
+            console.log('ok');
+            initMap(); 
+        };
+    </script>
+
 
 {% endblock %}
+
+

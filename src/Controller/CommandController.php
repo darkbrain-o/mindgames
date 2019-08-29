@@ -24,7 +24,7 @@ class CommandController extends AbstractController
         $command = $commandRepository->findAll();
 
         return $this->render('command/command.html.twig', [
-            'controller_name' => 'CommandController',
+            'command' => $command
         ]);
     }
 
@@ -45,10 +45,6 @@ class CommandController extends AbstractController
     }
 
       //------------------Partie EDIT------------------------
-
-      //-------------------------------------------------------
-      //--------------/!\ probleme de fk_user dans le edit/!\--------------
-      //------------------------------------------------------
     /**
      * @Route("/command/add", name="add_command")
      * @Route("/command/edit/{id<\d+>}", name="edit_command")
@@ -91,7 +87,7 @@ class CommandController extends AbstractController
             'command_form' => $commandForm->createView()
         ]);
     }
-
+    
     //--------------Partie DELETE----------------
 
     /**

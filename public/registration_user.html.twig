@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+
+    {% include "includes/nav_user.html.twig" %}
+
+<div class="container">
+    <form>
+        <div class="col-xl-5 mx-auto">
+            <div class="text-center">
+                <h3 class="white-text">
+                    <i class="fa fa-user white-text icon-md">  Inscription</i>
+                </h3>
+                <hr class="hr-light">
+            </div>
+            <div class="form-group">
+                <label for="FormControlFile"><i class="fa fa-cloud-upload icon" aria-hidden="true"></i>  Votre photo</label>
+                <input type="file" class="form-control-file" id="FormControlFile">
+            </div>
+            <div class="form-group">
+                <label for="formPseudo" class="active"><i class="fa fa-user icon"> Pseudo</i></label>
+                <input type="text" id="formPseudo" class="white-text form-control">
+            </div>
+            <div class="form-group">
+                <label for="formEmail" class="active"><i class="fa fa-envelope icon">  Email</i></label>
+                <input type="email" id="formEmail" class="white-text form-control">
+            </div>
+            <div class="form-group">
+                <label for="formPassword"><i class="fa fa-lock icon">  Mot de Passe</i></label>
+                <input type="password" id="formPassword" class="white-text form-control">
+            </div>
+            <a class="btn btn-primary" id="submit" href="registration_bank.html.twig">Valider</a>
+        </div>
+    </form>
+    <div class="row" >
+        <div class="mx-auto">
+            <span class="badge badge-pill badge-info">1</span>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

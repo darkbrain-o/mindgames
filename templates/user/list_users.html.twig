@@ -3,16 +3,17 @@
 {% block title %}Liste des Utilisateurs{% endblock %}
 
 {% block body %}
- <h1>Liste des Utilisateurs</h1>
+ <h1 class="text-center">Liste des Utilisateurs</h1>
 
-    <div class="container" style="width:80%; margin: 0 auto">
-
-        <a class="btn btn-dark" href="{{ path('add_user') }}">Ajouter un utilisateur</a>
+    <div class="container">
+        
+        
+        <a class="btn btn-success btn-block" href="{{ path('add_user') }}">Ajouter un utilisateur</a>
         <br>
-        <br>
-        <a class="btn btn-dark" href="{{ path('home_admin')}}">Retour au backOffice</a>
 
-        <table border="1">
+        <div class="row">
+    <div class="col table-responsive">
+        <table class="table">
             <thead>
 
                 <tr>
@@ -54,6 +55,8 @@
             </tbody>
 
         </table>
+        </div>
+        </div>
         <hr>
     </div>
 {% endblock %}

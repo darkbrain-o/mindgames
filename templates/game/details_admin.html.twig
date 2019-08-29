@@ -1,43 +1,67 @@
 {% extends 'base_admin.html.twig' %}
 
-{% block title %}Détail du produits {{ game.name}}{% endblock %}
+{% block title %}Détail du produits
+    {{ game.name}}
+{% endblock %}
 
 {% block body %}
 
-{#{% include "nav.html.twig" %}#}
+    <div class="container-fluid p-0 mx-auto heightBg " style="background-image: url('{{ asset(game.picture) }}');">
+        <div class="{{classGradien}} heightBg pt-2">
+            <div class="container justify-around">
+                <div
+                    class="detailPict mx-auto">
 
-<div class="container-fluid p-0 mx-auto heightBg " style="background-image: url('{{ asset(game.picture) }}');">
-    <div class="{{classGradien}} heightBg pt-2">
+                    <!-- <p class="card-text"> -->
+                    <h1 class="text-center">{{ game.name }}</h1>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <img
+                            src="{{ asset(game.picture) }}" alt="Card" class="img-fluid">
+                        <!-- </p> -->
 
-        <div class="detailPict col-8 mx-auto">
-           
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="p-2">
+                                <p class="card-text">
+                                    <strong>Id du Jeu :</strong>
+                                    {{ game.id }}</p>
+                                <p class="card-text">
+                                    <i>Retro :</i>
+                                    {{ game.RetroShape }}</p>
+                                <p class="card-text">
+                                    <strong>Commande du jeu :</strong>
+                                    {{ game.command }}</p>
+                                <p class="card-text">
+                                    <strong>Stock :</strong>
+                                    {{ game.stock }}</p>
+                                <p class="card-text">
+                                    <strong>Statut :</strong>
+                                    {{ game.status }}</p>
+                                <p class="card-text">
+                                    <strong>Prix :</strong>
+                                    {{ game.price }}</p>
+                                <p class="card-text">
+                                    <strong>Plateforme :</strong>
+                                    {{ game.platform }}</p>
+                                <p class="card-text">
+                                    <strong>Pegi :</strong>
+                                    {{ game.pegi }}</p>
+                                <p class="card-text">
+                                    <strong>Date d'ajout :</strong>
+                                    {{ game.CreationDate|date('d/m/Y') }}</p>
+                                <p>
+                                    <strong>Description :</strong>
+                                    {{ game.description }}</p>
+                            </div>
+                        </div>
 
-            <!-- <p class="card-text"> -->
-                <h1 class="text-center">{{ game.name }}</h1>
-                 <img src="{{ asset(game.picture) }}" alt="Card i" class="img-responsive">
-            <!-- </p> -->
-        <div class="p-2">    
-            <p class="card-text">Id du Jeu : {{ game.id }}</p>
-            <p class="card-text">Retro : {{ game.RetroShape }}</p>
-            <p class="card-text">Commande du jeu : {{ game.command }}</p>
-            <p class="card-text">Stock : {{ game.stock }}</p>
-            <p class="card-text">Statut : {{ game.status }}</p>
-            <p class="card-text">Prix : {{ game.price }}</p>
-            <p class="card-text">Plateforme : {{ game.platform }}</p>
-            <p class="card-text">Pegi : {{ game.pegi }}</p>
-            <p class="card-text">Date d'ajout : {{ game.CreationDate|date('d/m/Y') }}</p>
-            <p>Description :</p><br>{{ game.description }}
-
-            
+                    </div>
+                </div>
+                <a href="{{ path('liste_jeux') }}" class="nav-link btn btn-danger">Retour à la liste</a>
+            </div>
         </div>
-        </div>
-
-
     </div>
-    
 </div>
-        <li class="nav-item">
-    <a href="{{ path('liste_jeux') }}" class="nav-link btn btn-danger">Retour à la liste</a>
-</li>
-
-{% endblock %}
+    
+    {% endblock %}

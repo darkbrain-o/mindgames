@@ -1,11 +1,53 @@
+{% extends "base_admin.html.twig" %}
+
 {% block title %}{{ title_name }} un Utilisateur{% endblock %}
 
 {% block body %}
 
-<h1>{{ title_name }} un Utilisateur</h1>
-{{form(user_form)}}
+ <div class="container">
+        {{ form_start(user_form)}}
 
 
-<a href="{{ path('list_user') }}" class="nav-link btn btn-danger">Retour à la liste</a>
+        <form>
+            <div class="col-xl-5 mx-auto">
+                <div class="text-center">
+                    <h3 class="white-text">
+                        <i class="fa fa-user white-text icon-md">
+                            {{ title_name }} utilisateur</i>
+                    </h3>
+                    <hr class="hr-light">
+                </div>
+                <div class="form-group">
+                    {{ form_label(user_form.pseudo) }}
+                    {{ form_widget(user_form.pseudo, {attr : { class: 'white-text form-control'} }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(user_form.pictureFile) }}
+                    {{ form_widget(user_form.pictureFile, {attr : { class: 'white-text form-control'} }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(user_form.mail) }}
+                    {{ form_widget(user_form.mail, {attr : { class: 'white-text form-control'} }) }}
+                </div>
+                 <div class="form-group">
+                    <i class="fa fa-lock icon"></i>
+                    {{ form_label(user_form.password.first) }}
+                    {{ form_widget(user_form.password.first, {attr : { class: 'white-text form-control'} }) }}
+                    <i class="fa fa-lock icon"></i>
+                    {{ form_label(user_form.password.second) }}
+                    {{ form_widget(user_form.password.second, {attr : { class: 'white-text form-control'} }) }}
+            </div>
+                {{ form_label(user_form.submit) }}
+                {{ form_widget(user_form.submit, {attr : { class: 'btn-success form-control' } }) }}
+            </div>
+        </form>
+        <div class="row">
+            <div class="mx-auto">
+                <span class="badge badge-pill badge-info">1</span>
+            </div>
+        </div>
+        {{ form_end(user_form)}}
+        <a href="{{ path('list_user') }}" class="nav-link btn btn-danger btn-block">Retour à la liste</a>
+    </div>
 
 {% endblock %}

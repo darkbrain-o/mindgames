@@ -3,15 +3,14 @@
 {% block title %}Liste des jeux{% endblock %}
 
 {% block body %}
- <h1>Liste des jeux</h1>
+ <h1 class="text-center">Liste des jeux</h1>
 
-    <div class="container" style="width:80%; margin: 0 auto">
+    <div class="container">
 
-        <a href="{{ path('adm_add_game') }}">Ajouter un jeu</a>
-        <a href="{{ path('home_admin')}}">Retour au backOffice</a>
+        <a class="btn btn-success btn-block" href="{{ path('adm_add_game') }}">Ajouter un jeu</a>
 
 
-        <table border="1">
+        <table class="table" border="1">
             <thead>
 
                 <tr>
@@ -26,7 +25,7 @@
                     <th>Pegi</th>
                     <th>Statut</th>
                     <th>Date création</th>
-                    <th colspan="3">Actions</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
 
@@ -51,16 +50,10 @@
                         <td>
                             <a class="btn btn-info" href="{{ path('details_game_admin', {'id' : game.id }) }}">
                                 Détails
-                            </a>
-                        </td>
-                        <td>
-                    
+                            </a>                   
                              <a class="btn btn-danger" href="{{ path('adm_edit_game', {'id' : game.id }) }}">
                                 Modifier</i>
-                            </a> 
-
-                        </td>
-                        <td>
+                            </a>     
                             <a type="submit" value="Delete post" class="btn btn-lg btn-block btn-danger" href="{{ path('delete_game', {'id' : game.id }) }}" onclick="confirm('Valider la suppression ?') || event.preventDefault()">
                                 Supprimer</a>
                         </td>

@@ -4,64 +4,7 @@
 
 {% block body %}
 
-<div class="container">
+
     <h1>Bienvenue Administrateur</h1>
-
-   {# <table border="2">
-        <thead>
-            <tr>
-                <th>
-                    <a href="{{ path('home_admin') }}">Admin</a>
-                </th>
-                <th>
-                    API
-                </th>
-                <th>
-                    <a href="">Liste des jeux</a>
-                </th>
-                <th>
-                    <a href="">Commandes</a>
-                </th>
-                <th>
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-
-                        <a href="{{ path('app_logout') }}">Logout</a>
-            
-                    {% endif %}
-                </th>
-                <th>
-                    <a href="{{ path('list_user') }}">Utilisateur</a>
-                </th>
-            </tr>
-        </thead>
-    </table>
-</div>#}
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{{ path('home') }}">MindGames</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            
-          <a class="nav-link" href="{{ path('liste_jeux') }}">Jeux</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="{{ path('commands') }}">Commandes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="{{ path('list_user')}}">Utilisateur</a>
-        </li>
-        <li class="nav-item">
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <a class="nav-link disabled" href="{{ path('app_logout') }}">Déconnexion</a>
-            {% endif %}
-          </li>
-      </ul>
-    </div>
-  </nav>
   
 {% endblock %}

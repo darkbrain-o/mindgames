@@ -27,7 +27,7 @@ class UserController extends AbstractController
            $user = new User();
             $user = $this->getUser(); 
         }
-
+        $img = $user->getPicture();
         $form = $this->createForm(ProfilFormType::class, $user);
         $form->handleRequest($request);
         
@@ -61,6 +61,7 @@ class UserController extends AbstractController
         return $this->render('form/profil_form.html.twig', [
             'profil_form' => $form->createView(),
             'user' => $user,
+            'img_user' => $img
         ]);
     }
     /**
@@ -73,7 +74,8 @@ class UserController extends AbstractController
 
         $signUpForm->handleRequest($request);
 
-        if ($signUpForm->isSubmitted() && $signUpForm->isValid()) {
+        if ($signUpForm->isSubmitted()){// && $signUpForm->isValid()) {
+
             //Récupérer et hasher le mot de passe, puis le set
             $encodedPassword = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($encodedPassword);
@@ -90,7 +92,7 @@ class UserController extends AbstractController
                 
     
                 $imageFile->move($folder, $filename);
-    
+
                 $user->setPicture($folder . DIRECTORY_SEPARATOR . $filename);
                 
                 }
@@ -101,12 +103,10 @@ class UserController extends AbstractController
             //On ajoute l'utilisateur à la base
             $objectManager->persist($user);
             $objectManager->flush();
-
             //On redirige l'utilisateur vers le formulaire de connexion
-            return $this->redirectToRoute('app_login');
+            // return $this->redirectToRoute('app_login');
         }
-
-        return $this->render('base_user_form.html.twig', [
+        return $this->render('form/signup.html.twig', [
             'signup_form' => $signUpForm->createView(),
         ]);
     }

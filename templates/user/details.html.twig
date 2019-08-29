@@ -1,36 +1,44 @@
 {% extends 'base_admin.html.twig' %}
 
-{% block title %}Détails {{ user.pseudo }}{% endblock %}
+{% block title %}Détails
+    {{ user.pseudo }}
+{% endblock %}
 
 {% block body %}
 
-{#{% include "nav.html.twig" %}#}
+    <div class="container-fluid p-0 mx-auto heightBg " style="background-image: url('{{ asset(user.picture) }}');">
+        <div class="container justify-around">
+            <h1 class="text-center">{{ user.pseudo }}</h1>
+            <div class="detailPict mx-auto row">
 
-<div class="container-fluid p-0 mx-auto heightBg " style="background-image: url('{{ asset(user.picture) }}');">
+                <div
+                    class="col-lg-6">
 
-        <div class="detailPict col-8 mx-auto">
-           
 
-            <!-- <p class="card-text"> -->
-                <img src="{{ asset(user.picture) }}" alt="Card i" class="img-responsive">
-                <h1 class="text-center">{{ user.pseudo }}</h1>
-                 
-            <!-- </p> -->
-        <div class="p-2">    
-            <p class="card-text">Id de l'utilisateur : {{ user.id }}</p>
-            <p class="card-text">Id bancaire : {{ user.bank }}</p>
-            <p class="card-text">Id commande : {{ user.command }}</p>         
-            <p class="card-text">Mail : {{ user.mail }}</p>
-            <p class="card-text">Rôle : {{ user.role }}</p>   
+                    <!-- <p class="card-text"> -->
+                    <img src="{{ asset(user.picture) }}" alt="Card i" class="img-fluid">
+
+                </div>
+                <!-- </p> -->
+                <div class="col-lg-6">
+                    <div class="p-2">
+
+                        <p class="card-text">Id de l'utilisateur :
+                            {{ user.id }}</p>
+                        <p class="card-text">Id bancaire :
+                            {{ user.bank }}</p>
+                        <p class="card-text">Id commande :
+                            {{ user.command }}</p>
+                        <p class="card-text">Mail :
+                            {{ user.mail }}</p>
+                        <p class="card-text">Rôle :
+                            {{ user.role }}</p>
+                    </div>
+                </div>
+            </div>
+        <a href="{{ path('list_user') }}" class="nav-link btn btn-danger">Retour à la liste</a>
         </div>
-        </div>
 
 
-    </div>
-    
-</div>
-        <li class="nav-item">
-    <a href="{{ path('list_user') }}" class="nav-link btn btn-danger">Retour à la liste</a>
-</li>
+    {% endblock %}
 
-{% endblock %}

@@ -1,11 +1,67 @@
+{% extends "base_admin.html.twig" %}
+
 {% block title %}{{ title_name }} un Jeu{% endblock %}
 
 {% block body %}
 
-<h1>{{ title_name }} un Jeu</h1>
-{{form(game_form)}}
+ <div class="container">
+        {{ form_start(game_form)}}
 
 
-<a href="{{ path('liste_jeux') }}" class="nav-link btn btn-danger">Retour à la liste</a>
-
+        <form>
+            <div class="col-xl-5 mx-auto">
+                <div class="text-center">
+                    <h3 class="white-text">
+                        <i class="fa fa-user white-text icon-md">{{ title_name }} jeu</i>
+                    </h3>
+                    <hr class="hr-light">
+                </div>
+                <div class="form-group">
+                    {{ form_label(game_form.name) }}
+                    {{ form_widget(game_form.name, {attr : { class: 'white-text form-control'} }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(game_form.retro_shape) }}
+                    {{ form_widget(game_form.retro_shape, {attr : { class: 'white-text form-control'} }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(game_form.description) }}
+                    {{ form_widget(game_form.description, {attr : { class: 'white-text form-control'} }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(game_form.stock) }}
+                    {{ form_widget(game_form.stock, {attr : { class: 'white-text form-control'} }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(game_form.status) }}
+                    {{ form_widget(game_form.status, {attr : { class: 'white-text form-control'} }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(game_form.price) }}
+                    {{ form_widget(game_form.price, {attr : { class: 'white-text form-control'} }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(game_form.platform) }}
+                    {{ form_widget(game_form.platform, {attr : { class: 'white-text form-control'} }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(game_form.pegi) }}
+                    {{ form_widget(game_form.pegi, {attr : { class: 'white-text form-control'} }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(game_form.pictureFile) }}
+                    {{ form_widget(game_form.pictureFile, {attr : { class: 'white-text form-control'} }) }}
+                </div>
+                {{ form_label(game_form.submit) }}
+                {{ form_widget(game_form.submit, {attr : { class: 'btn-success form-control'} }) }}
+                </div>
+        </form>
+        <div class="row">
+            <div class="mx-auto">
+                <span class="badge badge-pill badge-info">1</span>
+            </div>
+        </div>
+        {{ form_end(game_form)}}
+        <a href="{{ path('liste_jeux') }}" class="nav-link btn btn-danger btn-block">Retour à la liste</a>
+    </div>
 {% endblock %}

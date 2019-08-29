@@ -30,12 +30,6 @@ class GameController extends AbstractController
         ]);
     }
 
-
-
-    //----------------------------------------------------------------------
-
-    // On ajoute ici les ajout, modif et supprission d'article "game"
-
     //-------------------Détails game--------------------------------
 
     /**

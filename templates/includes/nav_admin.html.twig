@@ -1,0 +1,60 @@
+{% block navAdmin %}
+
+    <nav class="navbar navbar-expand-lg navbar-dark p_bg-1">
+        <div class="p_toggler-right col-1"></div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsMindGamesAdmin"
+            aria-controls="navbarsMindGamesAdmin" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-md-around" id="navbarsMindGamesAdmin">
+            <ul class="navbar-nav">
+               
+                <li class="nav-item text-right">
+                    <a class="nav-link" href="{{ path('home')}}">MindGames</a>
+                </li>
+
+                 <li class="nav-item text-right">
+                    <a class="nav-link" href="{{ path('liste_jeux')}}">Stock</a>
+                </li>
+                 
+                <li class="nav-item dropdown text-right">
+                    <a data-toggle="collapse" href="#colaps1" role="button" aria-expanded="false"
+                        aria-controls="collapseExample" class="nav-link">Jeux</a>
+                    <div class="collapse" id="colaps1">
+                        <div class="col"><a href="{{ path('liste_jeux') }}">Bibliotèque</a></div>
+                        <div class="col"><a href="{{ path('adm_add_game') }}">Ajouter jeu</a></div>
+                          <div class="col"><a href="{{ path('liste_jeux') }}">Modifier jeu</a></div>
+                            <div class="col"><a href="{{ path('liste_jeux') }}">Supprimer jeu</a></div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown text-right">
+                    <a data-toggle="collapse" href="#colaps2" role="button" aria-expanded="false"
+                        aria-controls="collapseExample" class="nav-link">Commandes</a>
+                    <div class="collapse" id="colaps2">
+                        <div class="col"><a href="{{ path('commands') }}">Liste des commandes</a></div>
+                        <div class="col"><a href="{{ path('add_command') }}">Ajouter commande</a></div>
+                        <div class="col"><a href="{{ path('commands') }}">Modifier commande</a></div>
+                        <div class="col"><a href="{{ path('commands') }}">Supprimer commande</a></div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown text-right">
+                    <a data-toggle="collapse" href="#colaps3" role="button" aria-expanded="false"
+                        aria-controls="collapseExample" class="nav-link">Utilisateurs</a>
+                    <div class="collapse" id="colaps3">
+                        <div class="col"><a href="{{ path('list_user') }}">Liste des utilisateurs</a></div>
+                        <div class="col"><a href="{{ path('add_user') }}">Ajouter utilisateur</a></div> 
+                        <div class="col"><a href="{{ path('list_user') }}">Modifier utilisateur</a></div>
+                        <div class="col"><a href="{{ path('list_user') }}">Supprimer utilisateur</a></div>                     
+                    </div>
+                </li>
+                <li class="nav-item">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <a class="nav-link disabled" href="{{ path('app_logout') }}">Déconnexion</a>
+            {% endif %}
+          </li>
+            </ul>
+        </div>
+    </nav>
+
+{% endblock %}

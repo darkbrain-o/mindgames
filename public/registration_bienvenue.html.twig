@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+
+    {% include "includes/nav_user.html.twig" %}
+
+<div class="container">
+
+    <div class="card bg-dark text-white">
+        <img class="card-img img-fluid img-thumbnail" src="img/fond-ecran-manga-33.jpg" alt="Image">
+        <div class="card-img-overlay">
+            <h3 class="card-title text-center text-uppercase hello">Bienvenue</h3>
+            <h3 class="card-title text-center text-uppercase">sur</h3>
+            <h3 class="card-title text-center text-uppercase">MindGames</h3>
+        </div>
+    </div>
+
+    <div class="row" >
+        <div class="mx-auto">
+            <span class="badge badge-pill badge-info">3</span>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

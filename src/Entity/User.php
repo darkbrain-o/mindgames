@@ -37,12 +37,12 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=30)
      * @StrongString(min = 4, max = 30, allowSpecialChars = true)
      */
-    private $pseudo;
+    private $pseudo;//3,30  (["min"=>2,"max"=>30])
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $picture;
+    private $picture;//4,255
 
         /**
      * @Assert\Image(
@@ -70,7 +70,7 @@ class User implements UserInterface, \Serializable
      * @Assert\NotBlank()
      * @StrongPassword(min = 5, max = 30)
      */
-    private $password;
+    private $password;//6,30,true
 
 
     /**
@@ -87,7 +87,6 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string")
      */
     private $role = '';
-    
 
     public function __construct()
     {

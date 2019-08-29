@@ -31,7 +31,7 @@ class CommandEditFormType extends AbstractType
                 'label' => 'Status'
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Modifier'
+                'label' => 'Envoyer'
             ])
             
 

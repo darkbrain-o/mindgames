@@ -1,1 +1,30 @@
-<h1>details commande</h1>
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}
+    Détail de commande
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <p class="">
+                    <strong>Id Commande :</strong>
+                    {{ command.id }}</p>
+                <p class="">
+                    <strong>Id User :
+                    </strong>
+                    {{ command.user.id }}</p>
+                <p class="">
+                    <strong>Date de commande :
+                    </strong>
+                    {{ command.CommandDate|date('d/m/Y') }}</p>
+                <p class="">
+                    <strong>Statut :</strong>
+                    {{ command.status }}</p>
+            </div>
+        </div>
+        <a href="{{ path('commands') }}" class="nav-link btn btn-danger">Retour à la liste</a>
+    </div>
+{% endblock %}

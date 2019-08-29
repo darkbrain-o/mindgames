@@ -6,8 +6,9 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 
 class SignInFormType extends AbstractType
@@ -16,10 +17,10 @@ class SignInFormType extends AbstractType
     {
         $builder
 
-            ->add('pseudo',TextType::class,[
+            ->add('_username',TextType::class,[
                 'label' => 'Pseudo'
             ])
-            ->add('password',PasswordType::class,[
+            ->add('_password',PasswordType::class,[
                 'label' => 'Mot de passe'
             ])
             ->add('submit', SubmitType::class,[
@@ -31,7 +32,7 @@ class SignInFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => null,
         ]);
     }
 }

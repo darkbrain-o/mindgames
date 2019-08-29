@@ -45,8 +45,8 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator
     public function getCredentials(Request $request)
     {
         $credentials = [
-            'pseudo' => $request->request->get('pseudo'),
-            'password' => $request->request->get('password'),
+            'pseudo' => $request->request->get('sign_in_form')['_username'],
+            'password' => $request->request->get('sign_in_form')['_password'],
             'csrf_token' => $request->request->get('_csrf_token'),
         ];
         $request->getSession()->set(
@@ -76,6 +76,7 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator
 
     public function checkCredentials($credentials, UserInterface $user)
     {
+        //return true;
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
         // throw new \Exception('TODO: check the credentials inside '.__FILE__);
     }
