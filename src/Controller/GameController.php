@@ -6,6 +6,7 @@ use App\Entity\Game;
 
 use App\Form\GameAddFormType;
 use App\Form\GameEditAdminType;
+use App\Repository\CommandRepository;
 use App\Repository\GameRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -45,7 +46,7 @@ class GameController extends AbstractController
         // Sens linear gradien template for class | 0 = null |  1= turn | 2 = to right
         // injecter 'directionLinearG' => $directionLinearG,
 
-        return $this->render('game/details.html.twig', [
+        return $this->render('game/game.html.twig', [
             'game' => $gameById,
             'creation_date' => $creationDate,
             'directionLinearG' => $directionLinearG,
@@ -83,18 +84,20 @@ class GameController extends AbstractController
      */
     public function addGame(Request $request, GameRepository $gameRepository, ObjectManager $objectManager, Game $game = null)
     {
+        
         $titleName = 'Ajouter';
         $game = new Game();
         $game->setStatus(0);
-
+        
         $gameForm = $this->createForm(GameAddFormType::class, $game);
 
         $gameForm->handleRequest($request);
-
-        if ($gameForm->isSubmitted() && $gameForm->isValid()) {
+        
+        if ($gameForm->isSubmitted()){// && $gameForm->isValid()) {
             $game->setCreationDate(new \DateTime());
+            
             if ($game->getPictureFile() !== null) {
-
+               
                 // on gère ici le déplacement du fichier uploadé depuis la localisation temporaire
                 // vers la localisation permanente (public/uploads)
 
@@ -104,7 +107,7 @@ class GameController extends AbstractController
 
                 $folder = 'uploads';
                 $filename = uniqid();
-
+                
                 $imageFile->move($folder, $filename);
 
                 $game->setPicture($folder . DIRECTORY_SEPARATOR . $filename);
@@ -112,11 +115,9 @@ class GameController extends AbstractController
 
             $objectManager->persist($game);
             $objectManager->flush();
-
             //On va redirigé l'utilisateur vers le formulaire de connexion
             return $this->redirectToRoute('home');
         }
-
         return $this->render('game/add_game.html.twig', [
             'title_name' => $titleName,
             'game_form' => $gameForm->createView(),
@@ -132,18 +133,21 @@ class GameController extends AbstractController
     public function adminEditGame(Request $request, GameRepository $gameRepository, ObjectManager $objectManager, Game $game = null)
     {
         $titleName = 'Modifier';
+        $gamepict = null;
 
         if ($game === null) {
             $titleName = 'Ajouter';
             $game = new Game();
             $game->setStatus(0);
+        }else{
+            $gamepict = $game->getPicture();
         }
 
         $gameForm = $this->createForm(GameEditAdminType::class, $game);
 
         $gameForm->handleRequest($request);
 
-        if ($gameForm->isSubmitted() && $gameForm->isValid()) {
+        if ($gameForm->isSubmitted()){// && $gameForm->isValid()) {
             $game->setCreationDate(new \DateTime());
             if ($game->getPictureFile() !== null) {
 
@@ -172,6 +176,9 @@ class GameController extends AbstractController
         return $this->render('game/edit_game_admin.html.twig', [
             'title_name' => $titleName,
             'game_form' => $gameForm->createView(),
+            'classGradien' => 'bgGradienRight',
+            'img_game' => $gamepict,
+            
         ]);
     }
 

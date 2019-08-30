@@ -10,7 +10,7 @@
         <a class="btn btn-success btn-block" href="{{ path('adm_add_game') }}">Ajouter un jeu</a>
 
 
-        <table class="table">
+        <table class="table" border="1">
             <thead>
 
                 <tr>
@@ -36,10 +36,7 @@
                         <td>{{ game.id }}</td>
                         <td><img src="{{ asset(game.picture) }}" alt="" class="img-responsive" width="200" height="200"></td>
                         <td>{{ game.name }}</td>
-                        <td>{% set string = game.description %}
-                            {{ string|striptags|slice(0, 20)|raw }}
-                            <a href="{{ game.description }}">...</a>
-                        </td>
+                        <td>{{ game.description }}</td>
                         <td>{{ game.RetroShape }}</td>
                         <td>{{ game.stock }}</td>
                         <td>{{ game.price }}</td>

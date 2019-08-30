@@ -40,10 +40,16 @@
                 {{ form_label(user_form.submit) }}
                 {{ form_widget(user_form.submit, {attr : { class: 'btn-success form-control' } }) }}
             </div>
+            {% if img_user is not null %}
+            <div class="py-4 text-center">
+            <h2>Voici l'image actuelle : </h2>
+            <img src="{{asset(img_user)}}" class="d-block mx-auto" style="width : 50%" alt="Image de votre profil">
+            </div>
+            {% endif %}
         </form>
         <div class="row">
             <div class="mx-auto">
-                <span class="badge badge-pill badge-info">1</span>
+                <span class="badge badge-pill badge-info mb-3">1</span>
             </div>
         </div>
         {{ form_end(user_form)}}

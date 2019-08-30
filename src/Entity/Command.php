@@ -24,7 +24,7 @@ class Command
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="commands")
      */
-    private $user_id;
+    private $user;
 
     private $user_command;
     
@@ -55,12 +55,12 @@ class Command
 
     public function getUser(): ?User
     {
-        return $this->user_id;
+        return $this->user;
     }
 
     public function setUser(?User $user): self
     {
-        $this->user = $user_id;
+        $this->user = $user;
 
         return $this;
     }
@@ -123,7 +123,7 @@ class Command
     /**
      * Get the value of user_command
      */ 
-    public function getUserCommand()
+    public function getUserCommand() : ?string
     {
         return $this->user_command;
     }
@@ -133,7 +133,7 @@ class Command
      *
      * @return  self
      */ 
-    public function setUserCommand($user_command)
+    public function setUserCommand(string $user_command)
     {
         $this->user_command = $user_command;
 

@@ -1,6 +1,6 @@
 {% block nav %}
 
-    <nav class="p_bg-light navbar navbar-expand-md navbar-dark p_bg-1 ">
+    <nav class="p_bg-light navbar navbar-expand-md bgFooter p_bg-1 ">
         <div class="p_toggler-right col-1"></div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMindGames"
                 aria-controls="navbarMindGames" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,7 +9,7 @@
         <div class="p_hidden-altern collapse navbar-collapse justify-content-md-around" id="navbarMindGames">
             <ul class="navbar-nav text-right">
                 <li class="p_nav-link-container nav-item">
-                    <a class="p_nav-link nav-link" href="{{path('home')}}">MindGames</a>
+                    <a class="p_nav-link nav-link colLinkNav" href="{{path('home')}}">MindGames</a>
                 </li>
                 {#<li class="p_nav-link-container nav-item">
                     <a class="p_nav-link nav-link" href="{{ path('game') }}">Jeux</a>
@@ -17,15 +17,15 @@
 
                 {% if is_granted('ROLE_ADMIN') %}
                 <li class="p_nav-link-container nav-item">
-                    <a class="p_nav-link nav-link" href="{{ path('home_admin') }}">Back office</a>
+                    <a class="p_nav-link nav-link colLinkNav" href="{{ path('home_admin') }}">Back office</a>
                 </li>
         
                 {% endif %}
 
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
-                 <li class="p_nav-link-container nav-item"> 
-                    <a href=" {{ path('add_game') }} ">Ajouter un jeu</a>
+                 <li class="p_nav-link-container nav-item "> 
+                    <a href=" {{ path('add_game') }} " class="p_nav-link nav-link colLinkNav">Ajouter un jeu</a>
                 </li>
 
                  {% endif %}
@@ -43,22 +43,22 @@
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
                  <li class="p_nav-link-container nav-item">          
-                    <a href="{{ path('myProfil') }}">Mon Profil</a>
+                    <a href="{{ path('myProfil') }}" class="p_nav-link nav-link colLinkNav">Mon Profil</a>
                 </li>
                
                 {% else %}                     
                 <li class="p_nav-link-container nav-item">
-                    <a class="p_nav-link nav-link" href="{{path('signup')}}">Inscription</a>
+                    <a class="p_nav-link nav-link colLinkNav" href="{{path('signup')}}">Inscription</a>
                 </li>
                  <li class="p_nav-link-container nav-item">
-                    <a class="p_nav-link nav-link" href="{{path('app_login')}}">Connexion</a>
+                    <a class="p_nav-link nav-link colLinkNav" href="{{path('app_login')}}">Connexion</a>
                 </li>
                 {% endif %}
 
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
                 <li class="p_nav-link-container nav-item">
-                    <a href="{{ path('app_logout') }}">Déconnexion</a>
+                    <a href="{{ path('app_logout') }}" class="p_nav-link nav-link colLinkNav">Déconnexion</a>
                 </li>
 
                 {% endif %}

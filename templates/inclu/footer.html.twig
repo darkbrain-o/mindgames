@@ -1,10 +1,59 @@
-<footer class="container-fluid p-0 bg-dark">
-    <div class="border border-danger row col-12">
-        <div class="containerSocial border border-danger col-4 pt-1">
-            <a href=""><img src="{{ asset('pictures/logos/linkedin.svg') }}" alt="" class="logoSocial"></a>
-            <a href=""><img src="{{ asset('pictures/logos/twitter-square.svg') }}" alt="" class="logoSocial"></a>
-            <a href=""><img src="{{ asset('pictures/logos/facebook-square.svg') }}" alt="" class="logoSocial"></a>    
-            <a href=""><img src="{{ asset('pictures/logos/linkedin.svg') }}" alt="" class="logoSocial"></a>                            
+<footer class="container-fluid p-0 bgFooter">
+    <div class="row col-12 navbar navbar-expand-md">
+        <div class="containerSocial col-4 pt-1">
+            <a href="https://fr.linkedin.com/"><img src="{{ asset('pictures/logos/linkedin.svg') }}" alt="logo linkedin" class="logoSocial"></a>
+            <a href="https://twitter.com/?lang=fr"><img src="{{ asset('pictures/logos/twitter-square.svg') }}" alt="logo twitter" class="logoSocial"></a>
+            <a href="https://www.facebook.com/campaign/landing.php?&campaign_id=1555709729&extra_1=s%7Cc%7C294530221636%7Ce%7Cfacebook%27%7C&placement=&creative=294530221636&keyword=facebook%27&partner_id=googlesem&extra_2=campaignid%3D1555709729%26adgroupid%3D58543435105%26matchtype%3De%26network%3Dg%26source%3Dnotmobile%26search_or_content%3Ds%26device%3Dc%26devicemodel%3D%26adposition%3D1t1%26target%3D%26targetid%3Dkwd-362360550869%26loc_physical_ms%3D1006094%26loc_interest_ms%3D%26feeditemid%3D%26param1%3D%26param2%3D&gclid=EAIaIQobChMImYyyz7Co5AIVlvhRCh1McQEkEAAYASAAEgKxLPD_BwE"><img src="{{ asset('pictures/logos/facebook-square.svg') }}" alt="logo facebook" class="logoSocial"></a>    
+                                       
+        </div>
+        <div class="containerLien col-4 pt-1">         
+            <ul>
+                {% if is_granted('ROLE_ADMIN') %}
+                <li class="p_nav-link-container nav-item linkFooter">
+                    <a class="p_nav-link nav-link colLinkNav" href="{{ path('home_admin') }}">Back office</a>
+                </li>
+        
+                {% endif %}
+
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                 <li class="p_nav-link-container nav-item linkFooter"> 
+                    <a href=" {{ path('add_game') }} " class="p_nav-link nav-link colLinkNav">Ajouter un jeu</a>
+                </li>
+
+                 {% endif %}
+                
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                 <li class="p_nav-link-container nav-item linkFooter">          
+                    <a href="{{ path('myProfil') }}" class="p_nav-link nav-link colLinkNav">Mon Profil</a>
+                </li>
+               
+                {% else %}                     
+                <li class="p_nav-link-container nav-item linkFooter">
+                    <a class="p_nav-link nav-link colLinkNav" href="{{path('signup')}}">Inscription</a>
+                </li>
+                 <li class="p_nav-link-container nav-item linkFooter">
+                    <a class="p_nav-link nav-link colLinkNav" href="{{path('app_login')}}">Connexion</a>
+                </li>
+                {% endif %}
+
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                <li class="p_nav-link-container nav-item linkFooter">
+                    <a href="{{ path('app_logout') }}" class="p_nav-link nav-link colLinkNav">Déconnexion</a>
+                </li>
+
+                {% endif %}
+            </ul>                            
+        </div>
+        <div class="containerCondition col-4 pt-1">         
+            <ul>
+                <li class="linkFooter"><a href="#" class="p_nav-link nav-link colLinkNav">Nous contacter</a></li>
+                <li class="linkFooter"><a href="#" class="p_nav-link nav-link colLinkNav">Condition livraison</a></li>
+                <li class="linkFooter"><a href="#" class="p_nav-link nav-link colLinkNav">Moyen de paiment</a></li>
+                <li class="linkFooter"><a href="" class="p_nav-link nav-link colLinkNav">RGPD</a></li>
+            </ul>                            
         </div>
     </div>
 </footer>

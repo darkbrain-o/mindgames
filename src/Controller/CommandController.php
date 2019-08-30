@@ -12,9 +12,37 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+use App\Repository\GameRepository;
+
+
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 
 class CommandController extends AbstractController
 {
+
+
+    /**
+    * @Route("/command_confirmation", name="command_confirm")
+    */
+    public function confirmCommand(SessionInterface $session, Request $request )
+    {
+            $command = $session->get('bucket');
+            return $this->render('command/fake_command.html.twig', [
+                'command' => $command,
+            ]);    
+    }
+
+    /**
+     * @Route("/detail", name="detail_command")
+     */
+    public function detailCmd()
+    {
+        return $this->render('command/detail_command.html.twig', [
+            'controller_name' => 'CommandController',
+        ]);
+    }
+    
     /**
      * @Route("/command", name="commands")
      * @Security("has_role('ROLE_ADMIN')")
@@ -56,23 +84,24 @@ class CommandController extends AbstractController
      UserRepository $userRepository
      )
     {
-
         $titleName = 'Modifier';
 
         if($command === null) {
             $titleName = 'Ajouter';
             $command = new Command();
-        } 
-
+        }
+        else{
+            $user = $userRepository->findOneBy(["id"=>$command->getUser()]);
+            $command->setUserCommand($user->getPseudo());
+        }
+        
         $commandForm = $this->createForm(CommandEditFormType::class, $command);
 
         $commandForm->handleRequest($request);
 
-        if($commandForm->isSubmitted() && $commandForm->isValid()) {
-
-
+        if($commandForm->isSubmitted()){// && $commandForm->isValid()) {
+            
             $user = $userRepository->findOneBy(["pseudo"=>$command->getUserCommand()]);
-
             $command->setUser($user);
 
             $objectManager->persist($command);
@@ -81,10 +110,11 @@ class CommandController extends AbstractController
             //On va redirigé l'utilisateur vers le formulaire de connexion
             return $this->redirectToRoute('commands');
         }
-
+        
         return $this->render('command/edit.html.twig', [
             'title_name' => $titleName,
             'command_form' => $commandForm->createView()
+
         ]);
     }
     
@@ -100,6 +130,6 @@ class CommandController extends AbstractController
         // on supprime le produit
         $objectManager->remove($command);
         $objectManager->flush();
-        return $this->redirectToRoute('mycommands');
+        return $this->redirectToRoute('commands');
     }
 }

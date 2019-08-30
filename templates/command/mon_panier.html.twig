@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CommandController!
+{% endblock %}
+
+{% block body %}
+    <div class=" homeColor 100 h-100 mx-auto ">
+        <div class=" pt-5 mb-5 row">
+            <a href="{{ path('home') }}" class="btn btn-primary mx-auto ">Retour home</a>
+        </div>
+        
+        <div class="container posRelative ">
+            <div class="mask row" style="display: none">
+                <div class="spinner-border m-auto loader" role="status">
+                    <span class="sr-only ">Loading...</span>
+                </div>
+            </div>
+            <table class="bucket table table-bordered table-hover table-dark text-center table-striped responsive-table">
+                <thead>
+                    <tr class="">
+                        <th class="" colspan="9">
+                            <h1>Mon panier</h1>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Titre du jeu</th>
+                        <th scope="col">Référence</th>
+                        <th scope="col">Prix unitaire</th>
+                        <th scope="col">Quantité</th>
+                        <th scope="col">Prix total Ht</th>
+                        <th scope="col">Prix total TTC</th>
+                        <th colspan="3"></th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    {% set total = 0 %}
+                    {% set totalCommandTtc = 0 %}
+                    {% set totalCommandHt = 0 %}
+                    {# {% set totalByGameHt = 0 %} #}
+                    {% set totalByGameTtc = 0 %}
+
+                    {% for b in bucket %}
+                        {% set totalByGameTtc = b.game.price * b.nbGame %}
+                        {% set tauxGame =  20 * totalByGameTtc / 100  %}
+                        {% set totalByGameHt = totalByGameTtc - tauxGame %}
+                        {% set totalCommandTtc = totalCommandTtc + totalByGameTtc %}
+                        <tr>
+                            <th scope="row">{{ b.game.name }}</th>
+                            <th class="idGame">{{ b.game.id }}</th>
+                            <td>{{ b.game.price }}
+                                €</td>
+                            <td class="nbGameChange">{{ b.nbGame }}</td>
+                            <td
+                                class="selectNbGame displayNone">
+
+                                {# formulaire #}
+                                <form method="POST" action="{{ path('mon_panier') }}">
+
+                                    <select aria-placeholder="Combien de jeu voulez-vous ?" class="form-control" name="selectNbGames">
+                                        {% set nb = b.game.stock %}
+                                        {% for unit in range(1, nb) %}
+
+                                            <option value="{{unit}}">{{ unit }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </form>
+                            </td>
+
+                            <td>{{ totalByGameHt }}
+                                €</td>
+                            <td>{{ totalByGameTtc }}
+                                €</td>
+
+                            <td colspan="2">
+                                <button type="submit" class="btn btn-primary btnModifierQt" name="btnModifierQt">Modifier quantité</button>
+                            </td>
+                            <td>
+                                <btn class="btn btn-danger btnDeleteRowGame">Supprimer du panier</a>
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+                    {% set tauxTotal =  20 * totalCommandTtc / 100  %}
+                    {% set totalCommandHt = totalCommandTtc - tauxTotal %}
+                    <tr>
+
+                        <th colspan="3">Prix total de la commande HT</th>
+                        {# prix total - la tax #}
+
+                        <td colspan="3">{{ totalCommandHt | number_format(2, ',', ' ') }}
+                            €</td>
+                        <td colspan="3"></td>
+                    </tr>
+                    <tr>
+                        {# prix total de la commande #}
+                        <th colspan="3">Prix total de la commande TTC</th>
+
+                        <td colspan="3">{{ totalCommandTtc | number_format(2, ',', ' ') }}
+                            €</td>
+   
+                        <td colspan="2">
+                            <a href="{{ path('command_confirm') }}" class="btn btn-success btnConfirmCommand" >Confirmer la commande</a>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btnDeleteBucket" >Vider le panier</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% include "inclu/myBucket.js.twig" %}
+    
+{% endblock %}
+

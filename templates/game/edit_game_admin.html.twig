@@ -56,6 +56,12 @@
                 {{ form_widget(game_form.submit, {attr : { class: 'btn-success form-control'} }) }}
                 </div>
         </form>
+            {% if img_game is not null %}
+            <div class="py-4 text-center">
+            <h2>Voici l'image actuelle : </h2>
+            <img src="{{asset(img_game)}}" class="d-block mx-auto" style="width : 50%" alt="Image de votre profil">
+            </div>
+            {% endif %}
         <div class="row">
             <div class="mx-auto">
                 <span class="badge badge-pill badge-info">1</span>

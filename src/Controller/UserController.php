@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
@@ -145,7 +146,7 @@ class UserController extends AbstractController
      * @Route("/utilisateur/editer/{id<\d+>}", name="edit_user")
      * @Security("has_role('ROLE_ADMIN')")
      */
-    public function EditUser(Request $request, ObjectManager $objectManager, User $user = null, UserPasswordEncoderInterface $encoder)
+    public function EditUser(Request $request, UserRepository $userRepository,ObjectManager $objectManager, User $user = null, UserPasswordEncoderInterface $encoder)
     {
         $titleName = 'Ajouter';
         
@@ -158,7 +159,7 @@ class UserController extends AbstractController
 
         $userForm->handleRequest($request);
 
-        if ($userForm->isSubmitted() && $userForm->isValid()) {
+        if ($userForm->isSubmitted()){// && $userForm->isValid()) {
             //Récupérer et hasher le mot de passe, puis le set
             $encodedPassword = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($encodedPassword);
@@ -194,6 +195,7 @@ class UserController extends AbstractController
         return $this->render('user/edit.html.twig', [
             'title_name' => $titleName,
             'user_form' => $userForm->createView(),
+            'img_user' => $user->getPicture(),
         ]);
     }
 

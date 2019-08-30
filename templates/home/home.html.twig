@@ -15,19 +15,18 @@
 {% block body %}
 
 <div class="testbg clearfix">
-<div class="bgGradienRight">
+<div class="bgGradienRight text-center">
          
-        <hr>
-        <h1>Binevenue sur MINDGAMES ! </h1>
+        <h1>Bienvenue sur MINDGAMES ! </h1>
     
-        <p>MINDGAMES est un site de vente de jeux vidéos.</p>
+        <p>MINDGAMES est un site de vente de jeux vidéos.</p><br>
     
         <h2>Nos games</h2>
 
+        
+        {% include "inclu/carousel.html.twig" %}
+        {% include "inclu/list_home_games.html.twig" %}
     </div>
-  
-{% include "inclu/carousel.html.twig" %}
-{% include "inclu/list_home_games.html.twig" %}
 
 <h2 class="text-center">Où sommes-nous ?</h2>
 <br>
