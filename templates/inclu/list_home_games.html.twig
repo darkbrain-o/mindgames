@@ -1,0 +1,40 @@
+{% block body %}
+<div class="superContainer">
+    <div class="container">
+        <div class="navigation mx-auto">
+            {{ knp_pagination_render(games) }}
+        </div>
+    </div>
+    <div class="btnContainer container">
+        <div class="btnSection row">
+            <div class="btn-group btn-group-lg col-12" role="group" aria-label="...">
+                <button type="button" class="btn btn-primary col-6">Games</button>
+                <button type="button" class="btn btn-secondary col-6">Rétro</button>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mx-auto">                
+        <div class="row col-10 mx-auto">
+    {% for game in games %}
+    
+    <div class="zoomCard col-sm-12 col-md-6 col-lg-4  pt-1">
+        <img src="{{ asset(game.picture) }}" class=" picCard" alt="Photo - {{ game.name }}">
+        <div class="p-2">
+          <h5 class="">{{ game.name }}</h5>
+          <p class="">{{ game.description }}</p>
+          <p class="">prix : {{ game.price }} €</p>
+          <a class=" btn btn-success text-white mb-0" href="{{ path('details_game', {'id' : game.id })}}">Détails du produit</a>
+          
+        </div>
+      </div>
+    
+      {% endfor %}
+    </div>
+    </div> 
+    <div class="container ">
+        <div class="navigation mx-auto">
+            {{ knp_pagination_render(games) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

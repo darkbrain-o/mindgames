@@ -1,0 +1,16 @@
+{% block carousel %}
+<div class="container carousel">
+    <ul  style="padding: 0" class="galerie p-0">
+        {% for game in last_games %}
+        <li > 
+                <a href="{{ path('details_game', {'id' : game.id })}}">
+                    <img src="{{ asset(game.picture) }}" class="sizepict pict" alt="Photo - {{ game.name }}">
+                    
+                </a>
+            </li>
+        {% endfor %}
+        
+    </ul>
+</div>
+{% endblock %}
+

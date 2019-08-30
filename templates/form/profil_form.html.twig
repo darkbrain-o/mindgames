@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        {{ form_start(profil_form)}}
+        <form>
+            <div class="col-xl-5 mx-auto">
+                <div class="text-center">
+                    <h3 class="white-text">
+                        <i class="fa fa-user white-text icon-md"> Mon profil</i>
+                    </h3>
+                    <hr class="hr-light">
+                </div>
+                <div class="text-center">
+                <img src="{{ asset(app.user.picture) }}" alt="image de mon profil" class="img-fluid">
+                </div>
+                <div class="form-group">
+                    {{ form_label(profil_form.pseudo) }}
+                    {{ form_widget(profil_form.pseudo, {attr : { class: 'white-text form-control'} }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(profil_form.pictureFile) }}
+                    {{ form_widget(profil_form.pictureFile, {attr : { class: 'white-text form-control'} }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(profil_form.mail) }}
+                    {{ form_widget(profil_form.mail, {attr : { class: 'white-text form-control'} }) }}
+                </div>
+                {{ form_label(profil_form.submit) }}
+                {{ form_widget(profil_form.submit, {attr : { class: 'btn-success form-control' } }) }}
+            </div>
+        </form>
+        {{ form_end(profil_form)}}
+    </div>
+
+
+{% endblock %}

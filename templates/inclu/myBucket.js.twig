@@ -1,0 +1,83 @@
+<script>
+function refreshTable(reponse) {
+    $('.mask').css('display', 'none');
+    $('tbody').html($(reponse).find('tbody').html());
+    parseBucket();
+}
+
+function parseBucket() {
+    $('.btnModifierQt').click(function () {
+
+        const tdNbGame = $(this).parent().parent().find('.nbGameChange');
+        const tdNbSelect = $(this).parent().parent().find('.selectNbGame');
+        const tdIdGame = $(this).parent().parent().find('.idGame');
+
+        tdNbGame.toggleClass('displayNone');
+        tdNbSelect.toggleClass('displayNone');
+
+        let select = tdNbSelect.find('select');
+        select.val(parseInt(tdNbGame.html()));
+
+        /* $(this).parent().parent().find('.nbGameChange').toggleClass('displayNone');
+$(this).parent().parent().find('.selectNbGame').toggleClass('displayNone'); */
+
+        $(this).html($(this).html() === 'Annuler' ? 'Modifier quantité' : 'Annuler');
+
+
+    });
+    $('.selectNbGame').find('select').change(function () {
+        $('.mask').css('display', 'flex');
+        const idGame = $(this).closest('tr').find('.idGame').text();
+
+        $.post("{{ path('mon_panier') }}", {
+            idGame: idGame,
+            selectNbGames: $(this).val()
+        }, refreshTable);
+    });
+
+    $('.btnDeleteRowGame').click(function () {
+        if (confirm('Valider la suppression ?')) {
+
+            $('.mask').css('display', 'flex');
+            // Select id game
+            const idGame = $(this).parent().parent().find('.idGame').text();
+
+
+            // Send sellcontroller path name = mon_panier=> id game + bucket
+            $.post("{{ path('mon_panier') }}", {
+                idGameDelete: idGame
+            }, refreshTable);
+        }
+    });
+
+    $('.btnDeleteBucket').click(function () {
+        if (confirm('Valider la suppression ?')) {
+
+            $('.mask').css('display', 'flex');
+
+            // Send sellcontroller path name = mon_panier=> id game + bucket
+            $.post("{{ path('mon_panier') }}", {
+                deleteBucket: true
+            }, refreshTable);
+        }
+    });
+    $('.btnConfirmCommand').click(function () {
+
+        $('.mask').css('display', 'flex');
+        // Select bucket
+        // const command = $().parent().parent().find('bucket');
+        // const command = $('.bucket').parent().parent().find('bucket');
+
+        // Send Sellcontroller path name =
+        $.post("{{ path('command_confirm') }}", {
+            confirmCommand: command
+        }, refreshTable);
+    });
+
+}
+$(function () {
+
+    parseBucket();
+
+});
+</script>

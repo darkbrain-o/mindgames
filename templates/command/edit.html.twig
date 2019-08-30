@@ -1,0 +1,61 @@
+{% extends "base_admin.html.twig" %}
+
+{% block title %}
+    {{ title_name }}
+    la commande
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        {{ form_start(command_form)}}
+
+
+        <form>
+            <div class="col-xl-5 mx-auto">
+                <div class="text-center">
+                    <h3 class="white-text">
+                        <i class="fa fa-user white-text icon-md">
+                            {{ title_name }}
+        la commande</i>
+                    </h3>
+                    <hr class="hr-light">
+                </div>
+                <div class="form-group">
+                    {{ form_label(command_form.user_command) }}
+                    {{ form_widget(command_form.user_command, {attr : { class: 'white-text form-control'} }) }}
+
+                    {# <label for="FormControlFile"><i class="fa fa-cloud-upload icon" aria-hidden="true"></i>  Votre photo</label>
+                                    <input type="file" class="form-control-file" id="FormControlFile">#}
+                </div>
+                <div class="form-group">
+
+                    {{ form_label(command_form.command_date) }}
+                    {{ form_widget(command_form.command_date, {attr : { class: 'white-text form-control'} }) }}
+                    {# <label for="formEmail" class="active"><i class="fa fa-envelope icon">  Email</i></label>
+                                    <input type="email" id="formEmail" class="white-text form-control"> #}
+                </div>
+                <div class="form-group">
+
+                    {{ form_label(command_form.status) }}
+                    {{ form_widget(command_form.status, {attr : { class: 'white-text form-control'} }) }}
+
+                    {# <label for="formPassword"><i class="fa fa-lock icon">  Mot de Passe</i></label>
+                                    <input type="password" id="formPassword" class="white-text form-control"> #}
+                </div>
+                {{ form_label(command_form.submit) }}
+                {{ form_widget(command_form.submit, {attr : { class: 'btn-success form-control' } }) }}
+                {# <a class="btn btn-primary" id="submit" href="registration_bank.html.twig">Valider</a> #}
+            </div>
+        </form>
+        <div class="row">
+            <div class="mx-auto">
+                <span class="badge badge-pill badge-info">1</span>
+            </div>
+        </div>
+        {{ form_end(command_form)}}
+        {# <a href="{{ path('list_command') }}" class="nav-link btn btn-danger btn-block">Retour à la liste</a> #}
+    </div>
+
+{% endblock %}
+

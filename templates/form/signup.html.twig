@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+{{ form_start(signup_form)}}
+   
+    {# {{ form_widget(signup_form.mail) }} #}
+
+    <form>
+        <div class="col-xl-5 mx-auto">
+            <div class="text-center">
+                <h3 class="white-text">
+                    <i class="fa fa-user white-text icon-md">  Inscription</i>
+                </h3>
+                <hr class="hr-light">
+            </div>
+            <div class="form-group">
+             <i class="fa fa-cloud-upload icon"></i>
+                    {{ form_label(signup_form.pictureFile) }}
+                    {{ form_widget(signup_form.pictureFile, {attr : { class: 'white-text form-control'} }) }}
+            
+                {# <label for="FormControlFile"><i class="fa fa-cloud-upload icon" aria-hidden="true"></i>  Votre photo</label>
+                <input type="file" class="form-control-file" id="FormControlFile">#}
+            </div> 
+            <div class="form-group">
+                 <i class="fa fa-user icon"></i>
+                    {{ form_label(signup_form.pseudo) }}
+                    {{ form_widget(signup_form.pseudo, {attr : { class: 'white-text form-control'} }) }}
+            </div>
+            <div class="form-group">
+             <i class="fa fa-envelope icon"></i>
+                    {{ form_label(signup_form.mail) }}
+                    {{ form_widget(signup_form.mail, {attr : { class: 'white-text form-control'} }) }}
+                {# <label for="formEmail" class="active"><i class="fa fa-envelope icon">  Email</i></label>
+                <input type="email" id="formEmail" class="white-text form-control"> #}
+            </div>
+            <div class="form-group">
+             <i class="fa fa-lock icon"></i>
+                    {{ form_label(signup_form.password.first) }}
+                    {{ form_widget(signup_form.password.first, {attr : { class: 'white-text form-control'} }) }}
+                    <i class="fa fa-lock icon"></i>
+                    {{ form_label(signup_form.password.second) }}
+                    {{ form_widget(signup_form.password.second, {attr : { class: 'white-text form-control'} }) }}
+                {# <label for="formPassword"><i class="fa fa-lock icon">  Mot de Passe</i></label>
+                <input type="password" id="formPassword" class="white-text form-control"> #}
+            </div>
+                    {{ form_label(signup_form.submit) }}
+                    {{ form_widget(signup_form.submit, {attr : { class: 'btn-success form-control'} }) }}
+            {# <a class="btn btn-primary" id="submit" href="registration_bank.html.twig">Valider</a> #}
+        </div>
+    </form>
+    <div class="row" >
+        <div class="mx-auto">
+            <span class="badge badge-pill badge-info">1</span>
+        </div>
+     </div>
+    {{ form_end(signup_form)}}
+</div> 
+
+
+{% endblock %}

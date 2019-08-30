@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Game détails{% endblock %}
+
+
+
+{% block body %}        
+
+<div class="container-fluid p-0 h-100 mx-auto heightBg "
+style="background-image: url('{{ asset(game.picture) }}');">
+<div class="{{classGradien}} heightBg pt-2">
+
+    <div class="detailPict col-8 mx-auto"> 
+        
+        
+        <img src="{{ asset(game.picture) }}" class="pictDetail" alt="Photo - {{ game.name }}">
+        <div class="p-2">
+          <h5 class="text-center">{{ game.name }}</h5>
+          <p class="">Description : <br>{{ game.description }}</p>
+          <p class="">Plateforme : {{ game.platform }} - Pegi : {{ game.pegi }}</p>
+          <p class=""></p>
+          <p class="card-text">Date d'ajout : {{ creation_date|date('d/m/Y') }} - Stock disponible : {{ game.stock }} </p>
+          {# <p class="card-text">Date d'ajout : {{ game.creation_date|date('d/m/Y') }}</p> #}
+{# <a class=" btn btn-success text-white " href="{{ path('#', {'id' : game.id })}}">Acheter {{ game.name }}</a> #}
+          <p class=""></p>
+          <p class="">Prix : {{ game.price }} €</p>
+          <p>
+          <a class=" btn btn-success text-white " href="">Acheter {{ game.name }}</a><a href="{{ path('home') }}" class="btn btn-sm btn-danger ">Retour</a>
+          </p>
+        
+        </div> 
+        </div>
+        </div>
+      </div>
+    
+{% include "inclu/footer.html.twig" %}
+
+{% endblock %}

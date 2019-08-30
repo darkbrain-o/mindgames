@@ -1,0 +1,75 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Liste des jeux{% endblock %}
+
+{% block body %}
+ <h1 class="text-center">Liste des jeux</h1>
+
+    <div class="container">
+
+        <a class="btn btn-success btn-block" href="{{ path('adm_add_game') }}">Ajouter un jeu</a>
+
+
+        <table class="table" border="1">
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Image</th>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Retro</th>
+                    <th>Stock</th>
+                    <th>Prix</th>
+                    <th>Plate Forme</th>
+                    <th>Pegi</th>
+                    <th>Statut</th>
+                    <th>Date création</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for game in game %}
+                    <tr>
+
+                        <td>{{ game.id }}</td>
+                        <td><img src="{{ asset(game.picture) }}" alt="" class="img-responsive" width="200" height="200"></td>
+                        <td>{{ game.name }}</td>
+                        <td>{{ game.description }}</td>
+                        <td>{{ game.RetroShape }}</td>
+                        <td>{{ game.stock }}</td>
+                        <td>{{ game.price }}</td>
+                        <td>{{ game.platform }}</td>
+                        <td>{{ game.pegi }}</td>
+                        <td>{{ game.status }}</td>
+                        <td>{{ game.CreationDate|date('d/m/Y') }}</td>
+                        <td>
+                            <a class="btn btn-info" href="{{ path('details_game_admin', {'id' : game.id }) }}">
+                                Détails
+                            </a>                   
+                             <a class="btn btn-danger" href="{{ path('adm_edit_game', {'id' : game.id }) }}">
+                                Modifier</i>
+                            </a>     
+                            <a type="submit" value="Delete post" class="btn btn-lg btn-block btn-danger" href="{{ path('delete_game', {'id' : game.id }) }}" onclick="confirm('Valider la suppression ?') || event.preventDefault()">
+                                Supprimer</a>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+            </tbody>
+
+        </table>
+        {# <div class="col-1 bg-success">
+            {% if is_granted('ROLE_ADMIN') %}
+                <a class="btn btn-danger" href="{{ path('adm_edit_game', {'id' : game.id }) }}">Modifier</a>
+            {% endif %}
+        </div>
+        <div class="col-1">
+            {% if is_granted('ROLE_ADMIN') %}
+                <a class="btn btn-danger" href="{{ path('delete_game', {'id' : game.id }) }}">Supprimer</a>
+            {% endif %}
+        </div> #}
+        <hr>
+    </div>
+{% endblock %}

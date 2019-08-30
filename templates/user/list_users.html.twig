@@ -1,0 +1,62 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Liste des Utilisateurs{% endblock %}
+
+{% block body %}
+ <h1 class="text-center">Liste des Utilisateurs</h1>
+
+    <div class="container">
+        
+        
+        <a class="btn btn-success btn-block" href="{{ path('add_user') }}">Ajouter un utilisateur</a>
+        <br>
+
+        <div class="row">
+    <div class="col table-responsive">
+        <table class="table">
+            <thead>
+
+                <tr>
+                    <th>Image</th>
+                    <th>ID</th>
+                    <th>Pseudo</th>
+                    <th>ID Bank</th>
+                    <th>ID des Commandes</th>
+                    <th>Mail</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for user in user %}
+                    <tr>
+                        <td><img src="{{ asset(user.picture) }}" alt="" class="img-responsive" width="200" height="200"></td>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.pseudo }}</td>
+                        <td>{{ user.bank }}</td> 
+                        <td>{{ user.command }}</td>
+                        <td>{{ user.mail }}</td>
+                        <td>{{ user.role }}</td>
+                        <td>
+                            <a class="btn btn-info" href="{{ path('details_user', {'id' : user.id }) }}">
+                                Détails
+                            </a>
+                       
+                            <a class="btn btn-primary" href="{{ path('edit_user', {'id' : user.id }) }}">
+                                Modifier</a>
+                        
+                            <a type="submit" value="Delete post" class="btn btn-lg btn-block btn-danger" href="{{ path('delete_user', {'id' : user.id }) }}" onclick="confirm('Valider la suppression ?') || event.preventDefault()">
+                                Supprimer</a>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+            </tbody>
+
+        </table>
+        </div>
+        </div>
+        <hr>
+    </div>
+{% endblock %}
